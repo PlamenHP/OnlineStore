@@ -11,6 +11,8 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using OnlineStore.Web.Models;
+using OnlineStore.Model;
+using OnlineStore.Data;
 
 namespace OnlineStore.Web
 {

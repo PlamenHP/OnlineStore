@@ -6,6 +6,8 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using OnlineStore.Web.Models;
+using OnlineStore.Model;
+using OnlineStore.Data;
 
 namespace OnlineStore.Web
 {

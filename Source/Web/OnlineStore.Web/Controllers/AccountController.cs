@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using OnlineStore.Web.Models;
+using OnlineStore.Model;
 
 namespace OnlineStore.Web.Controllers
 {

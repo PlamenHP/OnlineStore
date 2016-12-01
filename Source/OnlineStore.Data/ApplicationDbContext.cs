@@ -1,19 +1,22 @@
 ﻿
 using Microsoft.AspNet.Identity.EntityFramework;
 using OnlineStore.Model;
+using System.Data.Entity;
 
 namespace OnlineStore.Data
 {
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    public class OnlineStoreDbContext : IdentityDbContext<ApplicationUser>
     {
-        public ApplicationDbContext()
+        public OnlineStoreDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
 
-        public static ApplicationDbContext Create()
+        public static OnlineStoreDbContext Create()
         {
-            return new ApplicationDbContext();
+            return new OnlineStoreDbContext();
         }
+
+        public IDbSet<Product> Products { get; set; }
     }
 }

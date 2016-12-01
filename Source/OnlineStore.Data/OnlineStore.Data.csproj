@@ -58,12 +58,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationDbContext.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Data\OnlineStore.Model\OnlineStore.Model.csproj">
       <Project>{ed1ac086-d706-4e10-b661-bc9044561a9e}</Project>
       <Name>OnlineStore.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OnlineStore.Common\OnlineStore.Common.csproj">
+      <Project>{74980c25-88ba-491e-818f-31e3d6e40c4d}</Project>
+      <Name>OnlineStore.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

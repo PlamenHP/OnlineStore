@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineStore.Web", "Web\Onli
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineStore.Data", "Data\OnlineStore.Data\OnlineStore.Data.csproj", "{F1242711-FB93-4C80-AE4D-C1CFC8FC8560}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineStore.Model", "Data\OnlineStore.Model\OnlineStore.Model.csproj", "{ED1AC086-D706-4E10-B661-BC9044561A9E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineStore.Models", "Data\OnlineStore.Models\OnlineStore.Models.csproj", "{ED1AC086-D706-4E10-B661-BC9044561A9E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineStore.Common", "Data\OnlineStore.Common\OnlineStore.Common.csproj", "{74980C25-88BA-491E-818F-31E3D6E40C4D}"
 EndProject

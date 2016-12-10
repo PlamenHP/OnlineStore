@@ -5,7 +5,7 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Owin;
 using OnlineStore.Data;
-using OnlineStore.Model;
+using OnlineStore.Models;
 
 namespace OnlineStore.Web
 {

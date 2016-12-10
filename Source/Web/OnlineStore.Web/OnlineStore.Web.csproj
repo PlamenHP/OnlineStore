@@ -266,9 +266,9 @@
       <Project>{f1242711-fb93-4c80-ae4d-c1cfc8fc8560}</Project>
       <Name>OnlineStore.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Data\OnlineStore.Model\OnlineStore.Model.csproj">
+    <ProjectReference Include="..\..\Data\OnlineStore.Models\OnlineStore.Models.csproj">
       <Project>{ed1ac086-d706-4e10-b661-bc9044561a9e}</Project>
-      <Name>OnlineStore.Model</Name>
+      <Name>OnlineStore.Models</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

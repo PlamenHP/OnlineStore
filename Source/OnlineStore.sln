@@ -11,11 +11,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{CFA80A80-F8A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineStore.Web", "Web\OnlineStore.Web\OnlineStore.Web.csproj", "{072CD598-B0C8-40D5-A26C-F6364C1A4A84}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineStore.Data", "OnlineStore.Data\OnlineStore.Data.csproj", "{F1242711-FB93-4C80-AE4D-C1CFC8FC8560}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineStore.Data", "Data\OnlineStore.Data\OnlineStore.Data.csproj", "{F1242711-FB93-4C80-AE4D-C1CFC8FC8560}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineStore.Model", "Data\OnlineStore.Model\OnlineStore.Model.csproj", "{ED1AC086-D706-4E10-B661-BC9044561A9E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineStore.Common", "OnlineStore.Common\OnlineStore.Common.csproj", "{74980C25-88BA-491E-818F-31E3D6E40C4D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineStore.Common", "Data\OnlineStore.Common\OnlineStore.Common.csproj", "{74980C25-88BA-491E-818F-31E3D6E40C4D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

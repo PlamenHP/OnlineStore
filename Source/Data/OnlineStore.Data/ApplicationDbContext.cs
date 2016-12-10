@@ -2,7 +2,7 @@
 using Microsoft.AspNet.Identity.EntityFramework;
 using OnlineStore.Common.Models;
 using OnlineStore.Data.Migrations;
-using OnlineStore.Model;
+using OnlineStore.Models;
 using System;
 using System.Data.Entity;
 using System.Linq;

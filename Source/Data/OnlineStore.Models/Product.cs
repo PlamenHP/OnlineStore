@@ -1,4 +1,4 @@
-﻿namespace OnlineStore.Model
+﻿namespace OnlineStore.Models
 {
     using OnlineStore.Common.Models;
     using System.ComponentModel.DataAnnotations;

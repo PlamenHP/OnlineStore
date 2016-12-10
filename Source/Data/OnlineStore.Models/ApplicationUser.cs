@@ -6,7 +6,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using System;
 
-namespace OnlineStore.Model
+namespace OnlineStore.Models
 {
     public class ApplicationUser : IdentityUser, IAuditInfo, IDeletableEntity
     {

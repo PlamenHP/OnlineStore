@@ -1,9 +1,5 @@
 ﻿using OnlineStore.Data;
-using OnlineStore.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using OnlineStore.Models;
 using System.Web.Mvc;
 
 namespace OnlineStore.Web.Controllers

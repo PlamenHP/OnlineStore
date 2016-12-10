@@ -5,16 +5,14 @@
     using System;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    public class Product: AuditInfo, IDeletableEntity , IAuditInfo
+    public class Product
     {
-        public DateTime? DeletedOn { get; set; }
-
         [Key]
         public int Id { get; set; }
 
-        [Index]
-        public bool IsDeleted { get; set; }
-
         public string Name { get; set; }
+
+        [ForeignKey("Category")]
+        public virtual int  Category{ get; set; }
     }
 }

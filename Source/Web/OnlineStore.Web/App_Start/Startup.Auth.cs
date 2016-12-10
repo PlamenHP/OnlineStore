@@ -3,11 +3,9 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
-using Microsoft.Owin.Security.Google;
 using Owin;
-using OnlineStore.Web.Models;
-using OnlineStore.Model;
 using OnlineStore.Data;
+using OnlineStore.Model;
 
 namespace OnlineStore.Web
 {

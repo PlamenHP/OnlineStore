@@ -62,7 +62,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Data\OnlineStore.Model\OnlineStore.Model.csproj">
+    <ProjectReference Include="..\OnlineStore.Model\OnlineStore.Model.csproj">
       <Project>{ed1ac086-d706-4e10-b661-bc9044561a9e}</Project>
       <Name>OnlineStore.Model</Name>
     </ProjectReference>

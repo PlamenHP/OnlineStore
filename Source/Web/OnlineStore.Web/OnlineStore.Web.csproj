@@ -254,18 +254,21 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-    <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Data\OnlineStore.Common\OnlineStore.Common.csproj">
+      <Project>{74980c25-88ba-491e-818f-31e3d6e40c4d}</Project>
+      <Name>OnlineStore.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\OnlineStore.Data\OnlineStore.Data.csproj">
+      <Project>{f1242711-fb93-4c80-ae4d-c1cfc8fc8560}</Project>
+      <Name>OnlineStore.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Data\OnlineStore.Model\OnlineStore.Model.csproj">
       <Project>{ed1ac086-d706-4e10-b661-bc9044561a9e}</Project>
       <Name>OnlineStore.Model</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\OnlineStore.Data\OnlineStore.Data.csproj">
-      <Project>{f1242711-fb93-4c80-ae4d-c1cfc8fc8560}</Project>
-      <Name>OnlineStore.Data</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

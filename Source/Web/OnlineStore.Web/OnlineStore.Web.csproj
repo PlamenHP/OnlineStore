@@ -168,6 +168,7 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -184,11 +185,12 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\Images\Home\1.jpg" />
-    <Content Include="Content\Images\Home\2.jpg" />
-    <Content Include="Content\Images\Home\3.jpg" />
-    <Content Include="Content\Images\Home\4.jpg" />
-    <Content Include="Content\Images\Home\5.jpg" />
+    <Content Include="Content\Images\Home\Carousel\1.jpg" />
+    <Content Include="Content\Images\Home\Carousel\2.jpg" />
+    <Content Include="Content\Images\Home\Carousel\3.jpg" />
+    <Content Include="Content\Images\Home\Carousel\4.jpg" />
+    <Content Include="Content\Images\Home\Carousel\5.jpg" />
+    <Content Include="Content\Images\Home\logo.png" />
     <Content Include="Content\Site.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -201,6 +203,7 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Areas\Admin\Views\web.config" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -256,6 +259,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Controllers\" />
+    <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\Admin\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

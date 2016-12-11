@@ -14,7 +14,7 @@ namespace OnlineStore.Data.Repositories
             : base(context)
         {
         }
-
+        
         public override IQueryable<T> All()
         {
             return base.All().Where(x => !x.IsDeleted);

@@ -17,8 +17,9 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
+
 				<a href="/home/index" class="navbar-left myLogo"><img src="~/Content/Images/Home/logo.png"></a>
-				@Html.ActionLink("BODY SUPPLEMENTS", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+				@Html.ActionLink("ADMIN AREA", "Index", "Admin/Home", new { area = "" }, new { @class = "navbar-brand  text-danger" })
 			</div>
 			<div class="navbar-collapse collapse">
 				@Html.Partial("_LoginPartial")
@@ -29,7 +30,7 @@
 	<div class="container body-content">
 		@RenderBody()
 		<!--START FOOTER-->
-		<footer class="navbar navbar-inverse">
+		<footer class="navbar label-danger">
 			<div id="footer">
 				<div class="container text-center">
 					<p class="text-muted">Copyright &copy; @DateTime.Now.Year <a href="http://softuni.bg" title"tropicdesign">tropicdesign.com</a></p>

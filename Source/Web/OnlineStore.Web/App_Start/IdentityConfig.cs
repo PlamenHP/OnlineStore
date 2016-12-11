@@ -50,6 +50,7 @@ namespace OnlineStore.Web
             // Configure validation logic for passwords
             manager.PasswordValidator = new PasswordValidator
             {
+                // TODO: set strict password rules in production
                 RequiredLength = 1,
                 RequireNonLetterOrDigit = false,
                 RequireDigit = false,

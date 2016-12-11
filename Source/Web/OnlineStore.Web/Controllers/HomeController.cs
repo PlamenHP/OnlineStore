@@ -9,10 +9,10 @@ namespace OnlineStore.Web.Controllers
         public ActionResult Index()
         {
 
-            var context = new OnlineStoreDbContext();
-            Product p = new Product() {Name="cars" };
-            context.Products.Add(p);
-            context.SaveChanges();
+            //var context = new OnlineStoreDbContext();
+            //Product p = new Product() {Name="cars" };
+            //context.Products.Add(p);
+            //context.SaveChanges();
             return View();
         }
 

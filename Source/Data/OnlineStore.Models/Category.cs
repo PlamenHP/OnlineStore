@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace OnlineStore.Models
 {
-    class Category
+    public class Category
     {
         private ICollection<Product> products;
         public Category()

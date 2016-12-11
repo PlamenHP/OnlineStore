@@ -24,11 +24,11 @@ namespace OnlineStore.Data
 
         public IDbSet<Product> Products { get; set; }
 
+        public IDbSet<Category> Categories { get; set; }
+
         public override int SaveChanges()
         {
             ApplyAuditInfoRules();
-            ApplyDeletableEntityRules();
-
             return base.SaveChanges();
         }
 
@@ -54,22 +54,6 @@ namespace OnlineStore.Data
                 {
                     entity.ModifiedOn = DateTime.Now;
                 }
-            }
-        }
-
-        private void ApplyDeletableEntityRules()
-        {
-            // Approach via @julielerman: http://bit.ly/123661P
-            foreach (
-                var entry in
-                    this.ChangeTracker.Entries()
-                        .Where(e => e.Entity is IDeletableEntity && (e.State == EntityState.Deleted)))
-            {
-                var entity = (IDeletableEntity)entry.Entity;
-
-                entity.DeletedOn = DateTime.Now;
-                entity.IsDeleted = true;
-                entry.State = EntityState.Modified;
             }
         }
     }

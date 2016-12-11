@@ -9,17 +9,17 @@ using System.Linq;
 
 namespace OnlineStore.Data
 {
-    public class OnlineStoreDbContext : IdentityDbContext<ApplicationUser>
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        public OnlineStoreDbContext()
+        public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<OnlineStoreDbContext, Configuration>());
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<ApplicationDbContext, Configuration>());
         }
 
-        public static OnlineStoreDbContext Create()
+        public static ApplicationDbContext Create()
         {
-            return new OnlineStoreDbContext();
+            return new ApplicationDbContext();
         }
 
         public IDbSet<Product> Products { get; set; }

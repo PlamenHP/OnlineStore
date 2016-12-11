@@ -11,7 +11,7 @@ namespace OnlineStore.Web.Areas.Admin.Controllers
         // GET: Admin/Home
         public ActionResult Index()
         {
-            return RedirectToAction("LogIn", "Account", new { area = "Admin" });
+            return View();
         }
     }
 }

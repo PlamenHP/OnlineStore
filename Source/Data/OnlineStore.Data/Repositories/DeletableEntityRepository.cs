@@ -28,7 +28,7 @@ namespace OnlineStore.Data.Repositories
         public override void Delete(T entity)
         {
             // apply deletable entity rules
-            // mark as deleted and change state to modyfied
+            // mark as deleted and change state to modified
             entity.DeletedOn = DateTime.Now;
             entity.IsDeleted = true;
             DbEntityEntry entry = this.Context.Entry(entity);

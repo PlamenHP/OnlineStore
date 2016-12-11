@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace OnlineStore.Data
 {
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IApplicationDbContext
     {
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
@@ -55,6 +55,11 @@ namespace OnlineStore.Data
                     entity.ModifiedOn = DateTime.Now;
                 }
             }
+        }
+
+        IDbSet<T> IApplicationDbContext.Set<T>()
+        {
+            return base.Set<T>();
         }
     }
 }

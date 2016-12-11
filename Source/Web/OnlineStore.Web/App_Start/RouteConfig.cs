@@ -17,7 +17,7 @@ namespace OnlineStore.Web
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
-                namespaces: new[] { "OnlineStore.Web.Areas.Admin.Controllers" }
+                namespaces: new[] { "OnlineStore.Web.Controllers" }
             );
         }
     }

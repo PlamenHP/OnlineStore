@@ -8,11 +8,11 @@ namespace OnlineStore.Web.Controllers
     {
         public ActionResult Index()
         {
-
-            //var context = new OnlineStoreDbContext();
-            //Product p = new Product() {Name="cars" };
-            //context.Products.Add(p);
-            //context.SaveChanges();
+            bool isAdmin = this.User.IsInRole("Admin");
+            if (isAdmin)
+            {
+                return RedirectToAction("Index", "Home", new { area = "Admin" });
+            }
             return View();
         }
 

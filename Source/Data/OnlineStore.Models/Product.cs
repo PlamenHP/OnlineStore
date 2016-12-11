@@ -7,12 +7,24 @@
 
     public class Product
     {
+        public Product()
+        {
+        }
+
+        public Product(string name)
+        {
+            this.Name = name;
+        }
+
         [Key]
         public int Id { get; set; }
 
+        [Required]
         public string Name { get; set; }
 
         [ForeignKey("Category")]
-        public virtual int  Category{ get; set; }
+        public int  CategoryId{ get; set; }
+
+        public virtual Category Category { get; set; }
     }
 }

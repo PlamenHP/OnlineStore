@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using OnlineStore.Web.Models;
 using OnlineStore.Models;
+using OnlineStore.Data;
 
 namespace OnlineStore.Web.Controllers
 {
@@ -24,6 +25,18 @@ namespace OnlineStore.Web.Controllers
         {
             UserManager = userManager;
             SignInManager = signInManager;
+        }
+
+        [AllowAnonymous]
+        public JsonResult IsUserEmailAvailable(string Email)
+        {
+            bool isAvailable;
+            using (var db = new ApplicationDbContext())
+            {
+                isAvailable = !db.Users.Any(User => User.UserName == Email);
+               
+            }
+            return Json(isAvailable, JsonRequestBehavior.AllowGet);
         }
 
         public ApplicationSignInManager SignInManager
@@ -149,8 +162,10 @@ namespace OnlineStore.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Email,FirstName = model.FirstName, LastName = model.LastName, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
+                var addRoleResult = UserManager.AddToRole(user.Id, "User");
+
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);

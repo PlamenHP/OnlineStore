@@ -12,7 +12,7 @@ namespace OnlineStore.Data.Repositories
         {
             if (context == null)
             {
-                throw new ArgumentException("An instance of DbContext is required to use this repository.", "context");
+                throw new ArgumentException("An instance of IApplicationDbContext is required to use this repository.", "context");
             }
 
             this.Context = context;

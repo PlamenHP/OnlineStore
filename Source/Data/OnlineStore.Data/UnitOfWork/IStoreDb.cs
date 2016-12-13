@@ -7,7 +7,7 @@
     {
         IRepository<ApplicationUser> Users { get;}
 
-        IRepository<Product> Products { get;}
+        IDeletableEntityRepository<Product> Products { get;}
 
         IRepository<Category> Categories { get;}
         

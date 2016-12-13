@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace OnlineStore.Common.Repositories
 {
-    public interface IRepository<T> : IDisposable where T : class
+    public interface IRepository<T>  where T : class
     {
         IQueryable<T> All();
 
@@ -16,9 +16,5 @@ namespace OnlineStore.Common.Repositories
         void Delete(T entity);
 
         void Delete(int id);
-
-        void Detach(T entity);
-
-        int SaveChanges();
     }
 }

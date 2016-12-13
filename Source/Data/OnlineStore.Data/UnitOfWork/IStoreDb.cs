@@ -1,12 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using OnlineStore.Common.Repositories;
+using OnlineStore.Models;
 
 namespace OnlineStore.Data.UnitOfWork
 {
-    interface IStoreDb
+    public interface IStoreDb
     {
+        IRepository<ApplicationUser> Users { get;}
+
+        IRepository<Product> Products { get;}
+
+        IRepository<Category> Categories { get;}
+        
+        void SaveChanges();
     }
 }

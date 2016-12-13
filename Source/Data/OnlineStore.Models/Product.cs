@@ -1,6 +1,6 @@
 ﻿namespace OnlineStore.Models
 {
-    using OnlineStore.Common.Models;
+    using Common.Models;
     using System.ComponentModel.DataAnnotations;
     using System;
     using System.ComponentModel.DataAnnotations.Schema;

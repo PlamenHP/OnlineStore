@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using OnlineStore.Common.Repositories;
-using OnlineStore.Models;
-using OnlineStore.Data.Repositories;
-
+﻿
 namespace OnlineStore.Data.UnitOfWork
 {
-    class StoreDb : IStoreDb
+    using Common.Repositories;
+    using Models;
+    using Repositories;
+
+    public class StoreDb : IStoreDb
     {
         private readonly IApplicationDbContext dbContext;
 
@@ -27,29 +23,13 @@ namespace OnlineStore.Data.UnitOfWork
             this.dbContext = dbContext;
         }
 
-        public IRepository<Category> Categories
-        {
-            get
-            {
-                return categories ?? (this.categories = new GenericRepository<Category>(dbContext));
-            }
-        }
+        public IRepository<Category> Categories => (categories ?? (this.categories = new GenericRepository<Category>(dbContext)));
 
-        public IRepository<Product> Products
-        {
-            get
-            {
-                return products ??( this.products = new GenericRepository<Product>(dbContext));
-            }
-        }
 
-        public IRepository<ApplicationUser> Users
-        {
-            get
-            {
-                return users ?? (this.users = new GenericRepository<ApplicationUser>(dbContext));
-            }
-        }
+        public IRepository<Product> Products => (products ?? (this.products = new DeletableEntityRepository<Product>(dbContext)));
+
+
+        public IRepository<ApplicationUser> Users => (users ?? (this.users = new GenericRepository<ApplicationUser>(dbContext)));
 
         public void SaveChanges()
         {

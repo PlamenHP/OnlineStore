@@ -1,11 +1,15 @@
-﻿using OnlineStore.Data;
-using OnlineStore.Models;
-using System.Web.Mvc;
-
-namespace OnlineStore.Web.Controllers
+﻿namespace OnlineStore.Web.Controllers
 {
-    public class HomeController : Controller
+    using Data.UnitOfWork;
+    using System.Web.Mvc;
+
+    public class HomeController : BaseController
     {
+        public HomeController(IStoreDb data)
+            :base(data)
+        {
+        }
+
         public ActionResult Index()
         {
             bool isAdmin = this.User.IsInRole("Admin");

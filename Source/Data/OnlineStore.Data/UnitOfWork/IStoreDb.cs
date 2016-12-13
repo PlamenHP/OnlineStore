@@ -1,8 +1,8 @@
-﻿using OnlineStore.Common.Repositories;
-using OnlineStore.Models;
-
-namespace OnlineStore.Data.UnitOfWork
+﻿namespace OnlineStore.Data.UnitOfWork
 {
+    using Common.Repositories;
+    using Models;
+
     public interface IStoreDb
     {
         IRepository<ApplicationUser> Users { get;}

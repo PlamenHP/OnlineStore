@@ -1,10 +1,10 @@
-﻿
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-
-namespace OnlineStore.Models
+﻿namespace OnlineStore.Models
 {
+
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+
     public class Category
     {
         private ICollection<Product> products;

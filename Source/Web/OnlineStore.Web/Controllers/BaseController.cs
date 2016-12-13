@@ -4,21 +4,23 @@ using System.Web.Mvc;
 
 namespace OnlineStore.Web.Controllers
 {
-    abstract class BaseController : Controller
+    public abstract class BaseController : Controller
     {
+        private IStoreDb data;
+        private ApplicationUser userProfile;
         public BaseController(IStoreDb data)
         {
             this.Data = data;
         }
 
-        public BaseController(IStoreDb data, ApplicationUser storeUser)
+        public BaseController(IStoreDb data, ApplicationUser userProfile)
             : this(data)
         {
-            this.StoreUser = storeUser;
+            this.UserProfile = userProfile;
         }
 
         protected IStoreDb Data { get; set; }
 
-        protected ApplicationUser StoreUser { get; set; }
+        public ApplicationUser UserProfile { get; set; }
     }
 }

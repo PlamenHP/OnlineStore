@@ -2,6 +2,7 @@
 {
     using Data.UnitOfWork;
     using System.Web.Mvc;
+    using System.Web.Mvc.Expressions;
 
     public class HomeController : BaseController
     {
@@ -23,8 +24,8 @@
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
-
-            return View();
+            
+            return this.RedirectToAction(c => c.Contact());
         }
 
         public ActionResult Contact()

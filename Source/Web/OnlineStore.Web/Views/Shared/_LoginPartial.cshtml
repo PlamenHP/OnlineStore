@@ -2,46 +2,40 @@
 
 @if (Request.IsAuthenticated)
 {
-	using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right navbar-inverse" }))
+	using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
 	{
 		@Html.AntiForgeryToken()
+
 		<ul class="nav navbar-nav navbar-right">
 			<li>
 				@Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
 			</li>
-			<li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+			<li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-shopping-cart"></span> Cart<span class="caret"></span></a>
+				<ul class="dropdown-menu" role="menu">
+
+					<li>@Html.ActionLink("  Items", "Details", "Cart", routeValues: null, htmlAttributes: new { id = "cartDetailsLink", @class = "glyphicon glyphicon-shopping-cart" })</li>
+
+					<li>@Html.ActionLink("  Checkout", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "glyphicon glyphicon-edit" })</li>
+				</ul>
+			</li>
+			<li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> Account<span class="caret"></span></a>
+				<ul class="dropdown-menu" role="menu">
+
+					<li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+
+					@*if user is admin menu option*@
+					@if (User.IsInRole("Admin"))
+					{
+						<li>@Html.ActionLink("Admin Panel", "Index", "admin/home")</li>
+						<li>@Html.ActionLink("Users", "List", "User")</li>
+						<li>@Html.ActionLink("Categories", "Index", "Category")</li>
+					}
+				</ul>
+			</li>
 		</ul>
 	}
-	<ul class="nav navbar-nav navbar-right">
-
-		<li class="dropdown">
-			<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-shopping-cart"></span> Cart<span class="caret"></span></a>
-			<ul class="dropdown-menu" role="menu">
-
-				<li>@Html.ActionLink("  Items", "Details", "Cart", routeValues: null, htmlAttributes: new { id = "cartDetailsLink", @class = "glyphicon glyphicon-shopping-cart" })</li>
-
-				<li>@Html.ActionLink("  Checkout", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "glyphicon glyphicon-edit" })</li>
-			</ul>
-		</li>
-		<li class="dropdown">
-			<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> Account<span class="caret"></span></a>
-			<ul class="dropdown-menu" role="menu">
-
-				<li>@Html.ActionLink("  Login", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "glyphicon glyphicon-log-in" })</li>
-
-				<li>@Html.ActionLink("  Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "glyphicon glyphicon-edit" })</li>
-
-
-				@*if user is admin menu option*@
-				@if (User.IsInRole("Admin"))
-				{
-					<li>@Html.ActionLink("Admin Panel", "Index", "admin/home")</li>
-					<li>@Html.ActionLink("Users", "List", "User")</li>
-					<li>@Html.ActionLink("Categories", "Index", "Category")</li>
-				}
-			</ul>
-		</li>
-	</ul>
 }
 else
 {

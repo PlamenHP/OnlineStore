@@ -1,15 +1,14 @@
-﻿
-using Microsoft.AspNet.Identity.EntityFramework;
-using OnlineStore.Common.Models;
-using OnlineStore.Data.Migrations;
-using OnlineStore.Models;
-using System;
-using System.Data.Entity;
-using System.Linq;
-
-namespace OnlineStore.Data
+﻿namespace OnlineStore.Data
 {
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    using Microsoft.AspNet.Identity.EntityFramework;
+    using Common.Models;
+    using Migrations;
+    using Models;
+    using System;
+    using System.Data.Entity;
+    using System.Linq;
+
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IApplicationDbContext
     {
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
@@ -55,6 +54,11 @@ namespace OnlineStore.Data
                     entity.ModifiedOn = DateTime.Now;
                 }
             }
+        }
+
+        IDbSet<T> IApplicationDbContext.Set<T>()
+        {
+            return base.Set<T>();
         }
     }
 }

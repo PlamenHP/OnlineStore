@@ -2,15 +2,15 @@
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
-using OnlineStore.Web.Models;
-using OnlineStore.Models;
-using OnlineStore.Data;
-
 namespace OnlineStore.Web.Controllers
 {
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.Owin;
+    using Microsoft.Owin.Security;
+    using Models;
+    using OnlineStore.Models;
+    using Data;
+
     [Authorize]
     public class AccountController : Controller
     {

@@ -1,11 +1,16 @@
-﻿using OnlineStore.Data;
-using OnlineStore.Models;
-using System.Web.Mvc;
-
-namespace OnlineStore.Web.Controllers
+﻿namespace OnlineStore.Web.Controllers
 {
-    public class HomeController : Controller
+    using Data.UnitOfWork;
+    using System.Web.Mvc;
+    using System.Web.Mvc.Expressions;
+
+    public class HomeController : BaseController
     {
+        public HomeController(IStoreDb data)
+            :base(data)
+        {
+        }
+
         public ActionResult Index()
         {
             bool isAdmin = this.User.IsInRole("Admin");
@@ -19,8 +24,8 @@ namespace OnlineStore.Web.Controllers
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
-
-            return View();
+            
+            return this.RedirectToAction(c => c.Contact());
         }
 
         public ActionResult Contact()

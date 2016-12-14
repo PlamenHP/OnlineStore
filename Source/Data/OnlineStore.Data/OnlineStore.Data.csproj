@@ -63,6 +63,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\DeletableEntityRepository.cs" />
     <Compile Include="Repositories\GenericRepository.cs" />
+    <Compile Include="UnitOfWork\IStoreDb.cs" />
+    <Compile Include="UnitOfWork\StoreDb.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Data\OnlineStore.Models\OnlineStore.Models.csproj">

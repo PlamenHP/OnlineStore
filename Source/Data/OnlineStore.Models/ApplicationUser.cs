@@ -1,12 +1,11 @@
-﻿
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations;
-
-namespace OnlineStore.Models
+﻿namespace OnlineStore.Models
 {
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
+    using System.Security.Claims;
+    using System.Threading.Tasks;
+    using System.ComponentModel.DataAnnotations;
+
     public class ApplicationUser : IdentityUser
     {
         [Required]

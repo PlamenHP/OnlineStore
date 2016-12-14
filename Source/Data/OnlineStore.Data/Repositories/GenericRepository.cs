@@ -1,11 +1,8 @@
 ﻿using OnlineStore.Common.Repositories;
 using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OnlineStore.Data.Repositories
 {
@@ -15,7 +12,7 @@ namespace OnlineStore.Data.Repositories
         {
             if (context == null)
             {
-                throw new ArgumentException("An instance of DbContext is required to use this repository.", "context");
+                throw new ArgumentException("An instance of IApplicationDbContext is required to use this repository.", "context");
             }
 
             this.Context = context;
@@ -82,23 +79,6 @@ namespace OnlineStore.Data.Repositories
             {
                 this.Delete(entity);
             }
-        }
-
-        public virtual void Detach(T entity)
-        {
-            DbEntityEntry entry = this.Context.Entry(entity);
-
-            entry.State = EntityState.Detached;
-        }
-
-        public int SaveChanges()
-        {
-            return this.Context.SaveChanges();
-        }
-
-        public void Dispose()
-        {
-            this.Context.Dispose();
         }
     }
 }

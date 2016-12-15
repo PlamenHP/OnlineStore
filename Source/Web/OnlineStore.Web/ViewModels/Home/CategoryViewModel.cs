@@ -1,6 +1,9 @@
 ﻿namespace OnlineStore.Web.ViewModels.Home
 {
-    public class CategoryViewModel
+    using Infrastructure.Mapping;
+    using OnlineStore.Models;
+
+    public class CategoryViewModel: IMapFrom<Category>
     {
         public CategoryViewModel()
         {

@@ -1,8 +1,10 @@
 ﻿namespace OnlineStore.Web.Controllers
 {
     using Data.UnitOfWork;
+    using System.Linq;
     using System.Web.Mvc;
     using System.Web.Mvc.Expressions;
+    using ViewModels.Home;
 
     public class HomeController : BaseController
     {
@@ -18,7 +20,14 @@
             {
                 return RedirectToAction("Index", "Home", new { area = "Admin" });
             }
-            return View();
+
+            var categories = this.Data.Categories
+                .All()
+                .OrderBy(x => x.Name)
+                .Select(x => new CategoryViewModel { Id = x.Id, Name = x.Name })
+                .ToList();
+
+            return View(categories);
         }
 
         public ActionResult About()

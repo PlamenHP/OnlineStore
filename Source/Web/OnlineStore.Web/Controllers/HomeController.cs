@@ -5,6 +5,8 @@
     using System.Web.Mvc;
     using System.Web.Mvc.Expressions;
     using ViewModels.Home;
+    using AutoMapper;
+    using Infrastructure.Mapping;
 
     public class HomeController : BaseController
     {
@@ -24,7 +26,7 @@
             var categories = this.Data.Categories
                 .All()
                 .OrderBy(x => x.Name)
-                .Select(x => new CategoryViewModel { Id = x.Id, Name = x.Name })
+                .MapTo<CategoryViewModel>()
                 .ToList();
 
             return View(categories);

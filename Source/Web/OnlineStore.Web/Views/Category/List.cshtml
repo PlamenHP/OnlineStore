@@ -1,24 +1,21 @@
 ﻿@model OnlineStore.Web.ViewModels.Category.CategoryViewModel
 @{
-    ViewBag.Title = "Products";
+	ViewBag.Title = "Products";
 }
 
 <div class="container">
-		<h2>@Model.Name</h2>
-		<div class="row">
-			@foreach (var product in Model.products)
-			{
-				<div class="well">
-					<div class="col-md-4">
-						<div class="pull-left">
-
-							@Html.ActionLink(product.Name, "List", "Category", new { @id = product.Id }, new { @class = "btn btn-default btn-xs" })
-
-						</div>
-
+	<h2>@Model.Name</h2>
+	<div class="btn-group-vertical">
+		<ul></ul>
+		@foreach (var product in Model.products)
+		{
+			<div class="col-lg-6">
+				<div class="well navbar">
+					<div class="btn-group-justified">
+						@Html.ActionLink(product.Name, "List", "Category", new { @id = product.Id }, new { @class = "btn btn-default btn-xs" })
 					</div>
 				</div>
-			}
-		</div>
+			</div>
+		}
+	</div>
 </div>
-

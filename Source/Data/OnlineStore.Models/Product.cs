@@ -28,6 +28,9 @@
         [Required]
         public Decimal Price { get; set; }
 
+        [Required]
+        public string ImagePath { get; set; }
+
         [ForeignKey("Category")]
         public int  CategoryId{ get; set; }
 

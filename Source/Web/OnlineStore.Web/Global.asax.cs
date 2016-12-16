@@ -1,8 +1,6 @@
 ﻿namespace OnlineStore.Web
 {
     using App_Start;
-    using Infrastructure.Mapping;
-    using System.Reflection;
     using System.Web.Mvc;
     using System.Web.Optimization;
     using System.Web.Routing;
@@ -16,9 +14,7 @@
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             ViewEnginesConfig.RegisterViewEngines(ViewEngines.Engines);
-
-            var autoMapperConfig = new AutoMapperConfig();
-            autoMapperConfig.Execute(Assembly.GetExecutingAssembly());
+            AutomapperStart.RegisterAllMappings();
         }
     }
 }

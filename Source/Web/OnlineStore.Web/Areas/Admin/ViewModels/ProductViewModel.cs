@@ -1,21 +1,13 @@
-﻿namespace OnlineStore.Models
+﻿namespace OnlineStore.Web.Areas.Admin.ViewModels
 {
-    using Common.Models;
-    using System.ComponentModel.DataAnnotations;
+    using Infrastructure.Mapping;
+    using OnlineStore.Models;
     using System;
+    using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    public class Product:IDeletableEntity
+    public class ProductViewModel: IMapFrom<Product>, IMapTo<Product>
     {
-        public Product()
-        {
-        }
-
-        public Product(string name)
-        {
-            this.Name = name;
-        }
-
         [Key]
         public int Id { get; set; }
 
@@ -32,7 +24,7 @@
         public string ImagePath { get; set; }
 
         [ForeignKey("Category")]
-        public int  CategoryId{ get; set; }
+        public int CategoryId { get; set; }
 
         public virtual Category Category { get; set; }
 

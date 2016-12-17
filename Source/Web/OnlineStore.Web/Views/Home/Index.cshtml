@@ -1,8 +1,9 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿@model IEnumerable<OnlineStore.Web.ViewModels.Home.CategoryViewModel>
+@{
+	ViewBag.Title = "Home Page";
 }
 <!--carousel-->
-<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+<div id="carousel-example-generic" class="carousel slide navbar" data-ride="carousel">
 	<!-- Indicators -->
 	<ol class="carousel-indicators">
 		<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
@@ -57,3 +58,16 @@
 	</a>
 </div>
 <!--end carousel-->
+
+<div class="btn-group-vertical">
+	@foreach (var category in Model)
+	{
+		<div class="well navbar">
+			<div class="btn-group-justified">
+				@Html.ActionLink(category.Name, "List", "Category", new { @id = category.Id }, new { @class = "btn bg-danger btn-xs btn-lg  text-primary" })
+			</div>
+		</div>
+	}
+</div>
+
+

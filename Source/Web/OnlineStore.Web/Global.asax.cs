@@ -14,6 +14,7 @@
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             ViewEnginesConfig.RegisterViewEngines(ViewEngines.Engines);
+            AutomapperStart.RegisterAllMappings();
         }
     }
 }

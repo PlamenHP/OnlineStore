@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using System.Data;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using OnlineStore.Data;
 using OnlineStore.Models;
 using OnlineStore.Web.Controllers;
 using OnlineStore.Data.UnitOfWork;
+using OnlineStore.Web.Areas.Admin.ViewModels;
+using OnlineStore.Infrastructure.Mapping;
+using AutoMapper.QueryableExtensions;
 
 namespace OnlineStore.Web.Areas.Admin.Controllers
 {
@@ -19,13 +17,17 @@ namespace OnlineStore.Web.Areas.Admin.Controllers
             :base(data)
         {
         }
-        private ApplicationDbContext data = new ApplicationDbContext();
 
         // GET: Admin/Products
         public ActionResult Index()
         {
-            var products = data.Products.Include(p => p.Category);
-            return View(products.ToList());
+            var productViewModel = this.Data.Products
+                    .AllWithDeleted()
+                    .OrderBy(x => x.Name)
+                    .MapTo<ProductViewModel>()
+                    .ToList();
+
+            return View(productViewModel);
         }
 
         // GET: Admin/Products/Details/5
@@ -35,18 +37,19 @@ namespace OnlineStore.Web.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Product product = data.Products.Find(id);
+            var product = this.Data.Products.GetById(id);
             if (product == null)
             {
                 return HttpNotFound();
             }
-            return View(product);
+            var productViewModel = this.Mapper.Map<ProductViewModel>(product);
+            return View(productViewModel);
         }
 
         // GET: Admin/Products/Create
         public ActionResult Create()
         {
-            ViewBag.CategoryId = new SelectList(data.Categories, "Id", "Name");
+            ViewBag.CategoryId = new SelectList(Data.Categories.All(), "Id", "Name");
             return View();
         }
 
@@ -55,17 +58,18 @@ namespace OnlineStore.Web.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Description,Price,CategoryId,IsDeleted,DeletedOn")] Product product)
+        public ActionResult Create(ProductViewModel productViewModel)
         {
             if (ModelState.IsValid)
             {
-                data.Products.Add(product);
-                data.SaveChanges();
+                var product = this.Mapper.Map<Product>(productViewModel);
+                this.Data.Products.Add(product);
+                this.Data.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CategoryId = new SelectList(data.Categories, "Id", "Name", product.CategoryId);
-            return View(product);
+            ViewBag.CategoryId = new SelectList(this.Data.Categories.All(), "Id", "Name", productViewModel.CategoryId);
+            return View(productViewModel);
         }
 
         // GET: Admin/Products/Edit/5
@@ -75,13 +79,14 @@ namespace OnlineStore.Web.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Product product = data.Products.Find(id);
+            var product = this.Data.Products.GetById(id);
             if (product == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.CategoryId = new SelectList(data.Categories, "Id", "Name", product.CategoryId);
-            return View(product);
+            var productViewModel = this.Mapper.Map<ProductViewModel>(product);
+            ViewBag.CategoryId = new SelectList(this.Data.Categories.All(), "Id", "Name", productViewModel.CategoryId);
+            return View(productViewModel);
         }
 
         // POST: Admin/Products/Edit/5
@@ -89,16 +94,17 @@ namespace OnlineStore.Web.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Description,Price,CategoryId,IsDeleted,DeletedOn")] Product product)
+        public ActionResult Edit(ProductViewModel productViewModel)
         {
             if (ModelState.IsValid)
             {
-                data.Entry(product).State = EntityState.Modified;
-                data.SaveChanges();
+                //var product = this.Data.Products.GetById(productViewModel.Id);
+                this.Data.Products.Update(this.Mapper.Map<Product>(productViewModel));
+                this.Data.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CategoryId = new SelectList(data.Categories, "Id", "Name", product.CategoryId);
-            return View(product);
+            ViewBag.CategoryId = new SelectList(this.Data.Categories.All(), "Id", "Name", productViewModel.CategoryId);
+            return View(productViewModel);
         }
 
         // GET: Admin/Products/Delete/5
@@ -108,12 +114,13 @@ namespace OnlineStore.Web.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Product product = data.Products.Find(id);
+            Product product = this.Data.Products.GetById(id);
             if (product == null)
             {
                 return HttpNotFound();
             }
-            return View(product);
+            var productViewModel = this.Mapper.Map<ProductViewModel>(product);
+            return View(productViewModel);
         }
 
         // POST: Admin/Products/Delete/5
@@ -121,19 +128,10 @@ namespace OnlineStore.Web.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Product product = data.Products.Find(id);
-            data.Products.Remove(product);
-            data.SaveChanges();
+            Product product = this.Data.Products.GetById(id);
+            this.Data.Products.Delete(product);
+            this.Data.SaveChanges();
             return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                data.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }

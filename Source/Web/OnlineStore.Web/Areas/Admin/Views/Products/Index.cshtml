@@ -1,4 +1,4 @@
-﻿@model IEnumerable<OnlineStore.Models.Product>
+﻿@model IEnumerable<OnlineStore.Web.Areas.Admin.ViewModels.ProductViewModel>
 
 @{
     ViewBag.Title = "Index";
@@ -23,6 +23,9 @@
         <th>
             @Html.DisplayNameFor(model => model.Price)
         </th>
+		<th>
+			@Html.DisplayNameFor(model => model.ImagePath)
+		</th>
         <th>
             @Html.DisplayNameFor(model => model.IsDeleted)
         </th>
@@ -46,6 +49,9 @@
         <td>
             @Html.DisplayFor(modelItem => item.Price)
         </td>
+		<th>
+			@Html.DisplayFor(modelItem => item.ImagePath)
+		</th>
         <td>
             @Html.DisplayFor(modelItem => item.IsDeleted)
         </td>

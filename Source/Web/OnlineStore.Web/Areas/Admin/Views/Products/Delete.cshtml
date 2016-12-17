@@ -1,4 +1,4 @@
-﻿@model OnlineStore.Models.Product
+﻿@model OnlineStore.Web.Areas.Admin.ViewModels.ProductViewModel
 
 @{
     ViewBag.Title = "Delete";
@@ -42,6 +42,14 @@
         <dd>
             @Html.DisplayFor(model => model.Price)
         </dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.ImagePath)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.ImagePath)
+		</dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.IsDeleted)

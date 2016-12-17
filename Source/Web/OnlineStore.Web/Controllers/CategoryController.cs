@@ -22,8 +22,7 @@
             }
 
             // Get category products
-            var categoty = this.Data.Categories
-                .GetById(id);
+            var categoty = this.Data.Categories.GetById(id);
             var products = new CategoryViewModel { Id = categoty.Id, Name = categoty.Name, products = categoty.Products};
 
             // Return the view

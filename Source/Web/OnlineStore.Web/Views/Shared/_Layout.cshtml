@@ -29,14 +29,14 @@
 	<div class="container body-content">
 		@RenderBody()
 		<!--START USER FOOTER-->
-			<footer class= "@(User.IsInRole("Admin")?"navbar bg-danger":"navbar navbar-inverse")">
-					<div id="footer">
-						<div class="container text-center">
-							<p class="text-muted">Copyright &copy; @DateTime.Now.Year <a href="http://softuni.bg" title"tropicdesign">tropicdesign.com</a></p>
-							<p class="text-muted">Plamen Petrov, p.petrov.mail@gmail.com</p>
-						</div>
-					</div>
-				</footer>
+		<footer class="navbar navbar-inverse">
+			<div id="footer">
+				<div class="container text-center">
+					<p class="text-muted">Copyright &copy; @DateTime.Now.Year <a href="http://softuni.bg" title"tropicdesign">tropicdesign.com</a></p>
+					<p class="text-muted">Plamen Petrov, p.petrov.mail@gmail.com</p>
+				</div>
+			</div>
+		</footer>
 		<!--END FOOTER-->
 	</div>
 

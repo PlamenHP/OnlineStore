@@ -1,6 +1,8 @@
 ﻿namespace OnlineStore.Web.Controllers
 {
+    using AutoMapper;
     using Data.UnitOfWork;
+    using Infrastructure.Mapping;
     using OnlineStore.Models;
     using System;
     using System.Linq;
@@ -12,7 +14,7 @@
         private IStoreDb data;
         private ApplicationUser userProfile;
 
-        public BaseController(IStoreDb data)
+        protected BaseController(IStoreDb data)
         {
             if (data == null)
             {
@@ -22,7 +24,7 @@
             this.Data = data;
         }
 
-        public BaseController(IStoreDb data, ApplicationUser userProfile)
+        protected BaseController(IStoreDb data, ApplicationUser userProfile)
             : this(data)
         {
             if (userProfile == null)
@@ -35,7 +37,7 @@
 
         protected IStoreDb Data { get; private set; }
 
-        public ApplicationUser UserProfile { get; private set; }
+        protected ApplicationUser UserProfile { get; private set; }
 
         protected override IAsyncResult BeginExecute(RequestContext requestContext, AsyncCallback callback, object state)
         {
@@ -47,6 +49,14 @@
             }
 
             return base.BeginExecute(requestContext, callback, state);
+        }
+
+        protected IMapper Mapper
+        {
+            get
+            {
+                return AutoMapperConfig.Configuration.CreateMapper();
+            }
         }
     }
 }

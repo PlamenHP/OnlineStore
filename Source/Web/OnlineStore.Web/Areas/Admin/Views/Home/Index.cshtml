@@ -1,7 +1,16 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Admin Panel";
 }
-
-<h2>Index</h2>
+<div class="container">
+	<h2>Manage</h2>
+	<hr />
+	<ul>
+		<li>@Html.ActionLink("Users", "List", "User")</li>
+		<li>@Html.ActionLink("Categories", "Index", "Category")</li>
+		<li>@Html.ActionLink("Products", "Index", "Products")</li>
+		<li>@Html.ActionLink("Manage Account", "Index", "Manage", new { area = "" }, htmlAttributes: new { title = "Manage" })</li>
+		<li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+	</ul>
+</div>
 

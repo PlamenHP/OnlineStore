@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
 
     public class ShoppingCart
     {
@@ -15,9 +16,12 @@
         [Key]
         public int Id { get; set; }
 
-        [Required]
-        public virtual ApplicationUser User { get; set; }
+        public virtual ICollection<Product> Products
+        {
+            get { return this.products; }
+            set { this.products = value; }
+        }
 
-        public virtual ICollection<Product> Products { get; set; }
+        public virtual ApplicationUser User { get; set; }
     }
 }

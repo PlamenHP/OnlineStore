@@ -12,6 +12,10 @@ namespace OnlineStore.Web.App_Start
     using Ninject.Web.Common;
     using Data.UnitOfWork;
     using Data;
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
+    using System.Data.Entity;
+    using OnlineStore.Models;
 
     public static class NinjectWebCommon 
     {
@@ -65,6 +69,12 @@ namespace OnlineStore.Web.App_Start
         {
             kernel.Bind<IStoreDb>().To<StoreDb>();
             kernel.Bind<IApplicationDbContext>().To<ApplicationDbContext>();
+            kernel.Bind<ApplicationDbContext>().ToSelf().InRequestScope();
+            kernel.Bind(typeof(UserManager<>)).ToSelf();
+            kernel.Bind(typeof(UserStore<>)).ToSelf();
+            kernel.Bind(typeof(DbContext)).To(typeof(IApplicationDbContext)).InRequestScope();
+            kernel.Bind(typeof(IUserStore<ApplicationUser>)).To(typeof(UserStore<ApplicationUser>)).InRequestScope();
+            kernel.Bind(typeof(UserManager<ApplicationUser>)).ToSelf().InRequestScope();
         }        
     }
 }

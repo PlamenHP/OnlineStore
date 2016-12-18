@@ -15,6 +15,8 @@
 
         IRepository<Order> Orders { get; }
 
+        IRepository<Role> UserRoles { get; }
+
         void SaveChanges();
     }
 }

@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
 
     public class Order
     {
@@ -15,11 +16,14 @@
         [Key]
         public int Id { get; set; }
 
-        public bool Shipped { get; set; }
+        public virtual ICollection<Product> Products
+        {
+            get { return this.products; }
+            set { this.products = value; }
+        }
 
-        [Required]
         public virtual ApplicationUser User { get; set; }
 
-        public virtual ICollection<Product> Products { get; set; }
+        public bool Shipped { get; set; }
     }
 }

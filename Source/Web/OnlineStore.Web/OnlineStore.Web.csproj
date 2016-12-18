@@ -200,11 +200,13 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\ViewEnginesConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\ApplicationUsersController.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoriesController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductsController.cs" />
     <Compile Include="Areas\Admin\ViewModels\CategoryViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\ProductViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\UserEditViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
@@ -266,6 +268,11 @@
     <Content Include="Areas\Admin\Views\Categories\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Categories\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Categories\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ApplicationUsers\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\ApplicationUsers\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\ApplicationUsers\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\ApplicationUsers\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\ApplicationUsers\Index.cshtml" />
     <None Include="Properties\Settings.settings">
       <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

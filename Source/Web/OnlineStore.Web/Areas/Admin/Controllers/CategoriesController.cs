@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Net;
-namespace OnlineStore.Web.Areas.Admin.Controllers
+﻿namespace OnlineStore.Web.Areas.Admin.Controllers
 {
-    using System.Web;
+    using System.Collections.Generic;
+    using System.Data;
+    using System.Linq;
+    using System.Net;
     using System.Web.Mvc;
-    using OnlineStore.Data;
     using OnlineStore.Models;
-    using OnlineStore.Web.Controllers;
-    using OnlineStore.Data.UnitOfWork;
-    using OnlineStore.Web.Areas.Admin.ViewModels;
+    using Web.Controllers;
+    using Data.UnitOfWork;
+    using ViewModels;
 
     public class CategoriesController : BaseController
     {

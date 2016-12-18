@@ -17,6 +17,8 @@
 
         IDbSet<Order> Orders { get; set; }
 
+        IDbSet<Role> UserRoles { get; set; }
+
         int SaveChanges();
 
         DbEntityEntry<TEntity> Entry<TEntity>(TEntity entity) where TEntity : class;

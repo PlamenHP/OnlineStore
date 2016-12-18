@@ -15,6 +15,7 @@ namespace OnlineStore.Data.UnitOfWork
         private IRepository<Category> categories;
         private IRepository<ShoppingCart> shoppingCarts;
         private IRepository<Order> orders;
+        private IRepository<Role> userRoles;
 
         public StoreDb(IApplicationDbContext dbContext)
         {
@@ -35,6 +36,8 @@ namespace OnlineStore.Data.UnitOfWork
         public IRepository<ShoppingCart> ShoppingCarts => (shoppingCarts ?? (this.shoppingCarts = new GenericRepository<ShoppingCart>(dbContext)));
 
         public IRepository<Order> Orders => (orders ?? (this.orders = new GenericRepository<Order>(dbContext)));
+
+        public IRepository<Role> UserRoles => (userRoles ?? (this.userRoles = new GenericRepository<Role>(dbContext)));
 
         public void SaveChanges()
         {

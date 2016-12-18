@@ -1,15 +1,16 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
-using System.Web;
-using System.Web.Mvc;
+﻿
 namespace OnlineStore.Web.Controllers
 {
+    using System.Linq;
+    using System.Threading.Tasks;
+    using System.Web;
+    using System.Web.Mvc;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.Owin.Security;
     using Models;
-    using OnlineStore.Models;
     using Data;
+    using OnlineStore.Models;
 
     [Authorize]
     public class AccountController : Controller

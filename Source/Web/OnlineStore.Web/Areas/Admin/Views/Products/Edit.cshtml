@@ -6,7 +6,7 @@
 
 <h2>Edit</h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     
@@ -40,10 +40,11 @@
             </div>
         </div>
 		<div class="form-group">
-			@Html.LabelFor(model => model.ImagePath, htmlAttributes: new { @class = "control-label col-md-2" })
+			@Html.LabelFor(model => model.ImageToView, htmlAttributes: new { @class = "control-label col-md-2" })
 			<div class="col-md-10">
-				@Html.EditorFor(model => model.ImagePath, new { htmlAttributes = new { @class = "form-control" } })
-				@Html.ValidationMessageFor(model => model.ImagePath, "", new { @class = "text-danger" })
+				<img src="@Model.ImageToView" id="selectedImage">
+				@Html.TextBoxFor(m => m.ImageFromView, new { type = "file", name="imageFromView", @onchange="readURL(this)" })
+				@Html.ValidationMessageFor(model => model.ImageFromView, "", new { @class = "text-danger" })
 			</div>
 		</div>
         <div class="form-group">
@@ -83,3 +84,9 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+@section JavaScript
+{
+	<script type="text/javascript" src="@Url.Content("~/Scripts/Site.js")"></script>
+}
+
+

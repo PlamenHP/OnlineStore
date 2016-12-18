@@ -1,6 +1,6 @@
 ﻿namespace OnlineStore.Web.App_Start
 {
-    using OnlineStore.Infrastructure.Mapping;
+    using Infrastructure.Mapping;
     using System.Reflection;
 
     public static class AutomapperStart

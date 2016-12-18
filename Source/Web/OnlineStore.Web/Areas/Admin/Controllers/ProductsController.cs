@@ -1,16 +1,16 @@
-﻿using System.Data;
-using System.Linq;
-using System.Net;
-using System.Web.Mvc;
-using OnlineStore.Models;
-using OnlineStore.Web.Controllers;
-using OnlineStore.Data.UnitOfWork;
-using OnlineStore.Web.Areas.Admin.ViewModels;
-using OnlineStore.Infrastructure.Mapping;
-using AutoMapper.QueryableExtensions;
-
-namespace OnlineStore.Web.Areas.Admin.Controllers
+﻿namespace OnlineStore.Web.Areas.Admin.Controllers
 {
+    using System.Data;
+    using System.Linq;
+    using System.Net;
+    using System.Web.Mvc;
+    using OnlineStore.Models;
+    using Web.Controllers;
+    using OnlineStore.Data.UnitOfWork;
+    using ViewModels;
+    using Infrastructure.Mapping;
+    using System.Collections.Generic;
+
     public class ProductsController : BaseController
     {
         public ProductsController(IStoreDb data)
@@ -21,12 +21,18 @@ namespace OnlineStore.Web.Areas.Admin.Controllers
         // GET: Admin/Products
         public ActionResult Index()
         {
-            var productViewModel = this.Data.Products
+            var products = this.Data.Products
                     .AllWithDeleted()
                     .OrderBy(x => x.Name)
-                    .MapTo<ProductViewModel>()
                     .ToList();
 
+
+            //productViewModel.MapTo<ProductViewModel>();
+            var productViewModel = Mapper.Map<IEnumerable<ProductViewModel>>(products);
+
+            //.MapTo<ProductViewModel>()
+            //.ToList();
+            //Mapper.Map<IEnumerable<Product>,IEnumerable<ProductViewModel>>(productViewModel);
             return View(productViewModel);
         }
 

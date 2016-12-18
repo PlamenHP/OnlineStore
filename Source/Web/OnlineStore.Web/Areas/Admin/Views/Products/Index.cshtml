@@ -24,7 +24,7 @@
             @Html.DisplayNameFor(model => model.Price)
         </th>
 		<th>
-			@Html.DisplayNameFor(model => model.ImagePath)
+			@Html.DisplayNameFor(model => model.ImageToView)
 		</th>
         <th>
             @Html.DisplayNameFor(model => model.IsDeleted)
@@ -50,7 +50,7 @@
             @Html.DisplayFor(modelItem => item.Price)
         </td>
 		<th>
-			@Html.DisplayFor(modelItem => item.ImagePath)
+			<img src="@item.ImageToView">
 		</th>
         <td>
             @Html.DisplayFor(modelItem => item.IsDeleted)

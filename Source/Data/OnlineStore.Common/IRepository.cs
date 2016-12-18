@@ -1,8 +1,7 @@
-﻿using System;
-using System.Linq;
-
-namespace OnlineStore.Common.Repositories
+﻿namespace OnlineStore.Common.Repositories
 {
+    using System.Linq;
+
     public interface IRepository<T>  where T : class
     {
         IQueryable<T> All();

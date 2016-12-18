@@ -10,7 +10,11 @@
         IDeletableEntityRepository<Product> Products { get;}
 
         IRepository<Category> Categories { get;}
-        
+
+        IRepository<ShoppingCart> ShoppingCarts { get; }
+
+        IRepository<Order> Orders { get; }
+
         void SaveChanges();
     }
 }

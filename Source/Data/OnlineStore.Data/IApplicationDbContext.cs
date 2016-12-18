@@ -13,6 +13,10 @@
 
         IDbSet<ApplicationUser> Users { get; set; }
 
+        IDbSet<ShoppingCart> ShoppingCarts { get; set; }
+
+        IDbSet<Order> Orders { get; set; }
+
         int SaveChanges();
 
         DbEntityEntry<TEntity> Entry<TEntity>(TEntity entity) where TEntity : class;

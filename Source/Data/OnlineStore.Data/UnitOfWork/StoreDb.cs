@@ -13,6 +13,8 @@ namespace OnlineStore.Data.UnitOfWork
         private IRepository<ApplicationUser> users;
         private IDeletableEntityRepository<Product> products;
         private IRepository<Category> categories;
+        private IRepository<ShoppingCart> shoppingCarts;
+        private IRepository<Order> orders;
 
         public StoreDb(IApplicationDbContext dbContext)
         {
@@ -26,11 +28,13 @@ namespace OnlineStore.Data.UnitOfWork
 
         public IRepository<Category> Categories => (categories ?? (this.categories = new GenericRepository<Category>(dbContext)));
 
-
         public IDeletableEntityRepository<Product> Products => (products ?? (this.products = new DeletableEntityRepository<Product>(dbContext)));
 
-
         public IRepository<ApplicationUser> Users => (users ?? (this.users = new GenericRepository<ApplicationUser>(dbContext)));
+
+        public IRepository<ShoppingCart> ShoppingCarts => (shoppingCarts ?? (this.shoppingCarts = new GenericRepository<ShoppingCart>(dbContext)));
+
+        public IRepository<Order> Orders => (orders ?? (this.orders = new GenericRepository<Order>(dbContext)));
 
         public void SaveChanges()
         {

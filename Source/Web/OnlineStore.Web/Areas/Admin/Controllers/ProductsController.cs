@@ -22,17 +22,26 @@
         public ActionResult Index()
         {
             var products = this.Data.Products
-                    .AllWithDeleted()
+                    .All()
                     .OrderBy(x => x.Name)
                     .ToList();
 
-
-            //productViewModel.MapTo<ProductViewModel>();
             var productViewModel = Mapper.Map<IEnumerable<ProductViewModel>>(products);
 
-            //.MapTo<ProductViewModel>()
-            //.ToList();
-            //Mapper.Map<IEnumerable<Product>,IEnumerable<ProductViewModel>>(productViewModel);
+            return View(productViewModel);
+        }
+
+        // GET: Admin/Products
+        public ActionResult ListDeleted()
+        {
+            var products = this.Data.Products
+                    .AllWithDeleted()
+                    .Where(x=>x.IsDeleted == true)
+                    .OrderBy(x => x.Name)
+                    .ToList();
+
+            var productViewModel = Mapper.Map<IEnumerable<ProductViewModel>>(products);
+
             return View(productViewModel);
         }
 

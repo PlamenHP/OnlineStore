@@ -1,16 +1,16 @@
-﻿using System.Data;
-using System.Linq;
-using System.Net;
-using System.Web.Mvc;
-using OnlineStore.Models;
-using OnlineStore.Web.Controllers;
-using OnlineStore.Data.UnitOfWork;
-using OnlineStore.Web.Areas.Admin.ViewModels;
-using OnlineStore.Infrastructure.Mapping;
-using AutoMapper.QueryableExtensions;
-
-namespace OnlineStore.Web.Areas.Admin.Controllers
+﻿namespace OnlineStore.Web.Areas.Admin.Controllers
 {
+    using System.Data;
+    using System.Linq;
+    using System.Net;
+    using System.Web.Mvc;
+    using OnlineStore.Models;
+    using Web.Controllers;
+    using OnlineStore.Data.UnitOfWork;
+    using ViewModels;
+    using Infrastructure.Mapping;
+    using System.Collections.Generic;
+
     public class ProductsController : BaseController
     {
         public ProductsController(IStoreDb data)
@@ -21,11 +21,26 @@ namespace OnlineStore.Web.Areas.Admin.Controllers
         // GET: Admin/Products
         public ActionResult Index()
         {
-            var productViewModel = this.Data.Products
-                    .AllWithDeleted()
+            var products = this.Data.Products
+                    .All()
                     .OrderBy(x => x.Name)
-                    .MapTo<ProductViewModel>()
                     .ToList();
+
+            var productViewModel = Mapper.Map<IEnumerable<ProductViewModel>>(products);
+
+            return View(productViewModel);
+        }
+
+        // GET: Admin/Products
+        public ActionResult ListDeleted()
+        {
+            var products = this.Data.Products
+                    .AllWithDeleted()
+                    .Where(x=>x.IsDeleted == true)
+                    .OrderBy(x => x.Name)
+                    .ToList();
+
+            var productViewModel = Mapper.Map<IEnumerable<ProductViewModel>>(products);
 
             return View(productViewModel);
         }
@@ -98,7 +113,6 @@ namespace OnlineStore.Web.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                //var product = this.Data.Products.GetById(productViewModel.Id);
                 this.Data.Products.Update(this.Mapper.Map<Product>(productViewModel));
                 this.Data.SaveChanges();
                 return RedirectToAction("Index");

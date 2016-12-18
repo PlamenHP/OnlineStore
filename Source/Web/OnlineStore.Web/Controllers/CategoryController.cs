@@ -1,7 +1,6 @@
 ﻿namespace OnlineStore.Web.Controllers
 {
     using Data.UnitOfWork;
-    using System.Linq;
     using System.Net;
     using System.Web.Mvc;
     using ViewModels.Category;

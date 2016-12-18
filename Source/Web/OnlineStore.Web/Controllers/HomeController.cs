@@ -5,7 +5,6 @@
     using System.Web.Mvc;
     using System.Web.Mvc.Expressions;
     using ViewModels.Home;
-    using AutoMapper;
     using Infrastructure.Mapping;
 
     public class HomeController : BaseController

@@ -4,6 +4,7 @@
     using System.ComponentModel.DataAnnotations;
     using System;
     using System.ComponentModel.DataAnnotations.Schema;
+    using System.Web;
 
     public class Product:IDeletableEntity
     {
@@ -28,8 +29,7 @@
         [Required]
         public Decimal Price { get; set; }
 
-        [Required]
-        public string ImagePath { get; set; }
+        public byte[] Image { get; set; }
 
         [ForeignKey("Category")]
         public int  CategoryId{ get; set; }

@@ -113,7 +113,6 @@
         {
             if (ModelState.IsValid)
             {
-                //var product = this.Data.Products.GetById(productViewModel.Id);
                 this.Data.Products.Update(this.Mapper.Map<Product>(productViewModel));
                 this.Data.SaveChanges();
                 return RedirectToAction("Index");

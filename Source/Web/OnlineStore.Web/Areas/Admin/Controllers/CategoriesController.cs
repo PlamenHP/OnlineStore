@@ -4,24 +4,34 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
-using System.Web.Mvc;
-using OnlineStore.Data;
-using OnlineStore.Models;
-
 namespace OnlineStore.Web.Areas.Admin.Controllers
 {
-    public class CategoriesController : Controller
+    using System.Web;
+    using System.Web.Mvc;
+    using OnlineStore.Data;
+    using OnlineStore.Models;
+    using OnlineStore.Web.Controllers;
+    using OnlineStore.Data.UnitOfWork;
+    using OnlineStore.Web.Areas.Admin.ViewModels;
+
+    public class CategoriesController : BaseController
     {
-        private ApplicationDbContext data = new ApplicationDbContext();
-        public ProductsController(IStoreDb data)
+        public CategoriesController(IStoreDb data)
             :base(data)
         {
         }
+
         // GET: Admin/Categories
         public ActionResult Index()
         {
-            return View(data.Categories.ToList());
+            var categories = this.Data.Categories
+                    .All()
+                    .OrderBy(x => x.Name)
+                    .ToList();
+
+            var categoryViewModel = Mapper.Map<IEnumerable<CategoryViewModel>>(categories);
+
+            return View(categoryViewModel);
         }
 
         // GET: Admin/Categories/Details/5
@@ -31,12 +41,13 @@ namespace OnlineStore.Web.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Category category = data.Categories.Find(id);
+            Category category = Data.Categories.GetById(id);
             if (category == null)
             {
                 return HttpNotFound();
             }
-            return View(category);
+            var categoryViewModel = this.Mapper.Map<CategoryViewModel>(category);
+            return View(categoryViewModel);
         }
 
         // GET: Admin/Categories/Create
@@ -50,16 +61,18 @@ namespace OnlineStore.Web.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Image")] Category category)
+        public ActionResult Create(CategoryViewModel categoryViewModel)
         {
             if (ModelState.IsValid)
             {
-                data.Categories.Add(category);
-                data.SaveChanges();
+                var category = this.Mapper.Map<Category>(categoryViewModel);
+                this.Data.Categories.Add(category);
+                this.Data.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(category);
+            ViewBag.CategoryId = new SelectList(this.Data.Categories.All(), "Id", "Name", categoryViewModel.Id);
+            return View(categoryViewModel);
         }
 
         // GET: Admin/Categories/Edit/5
@@ -69,12 +82,15 @@ namespace OnlineStore.Web.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Category category = data.Categories.Find(id);
+            Category category = Data.Categories.GetById(id);
             if (category == null)
             {
                 return HttpNotFound();
             }
-            return View(category);
+
+            var categoryViewModel = this.Mapper.Map<CategoryViewModel>(category);
+            ViewBag.CategoryId = new SelectList(this.Data.Categories.All(), "Id", "Name", categoryViewModel.Id);
+            return View(categoryViewModel);
         }
 
         // POST: Admin/Categories/Edit/5
@@ -82,15 +98,17 @@ namespace OnlineStore.Web.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Image")] Category category)
+        public ActionResult Edit(CategoryViewModel categoryViewModel)
         {
             if (ModelState.IsValid)
             {
-                data.Entry(category).State = EntityState.Modified;
-                data.SaveChanges();
+                this.Data.Categories.Update(this.Mapper.Map<Category>(categoryViewModel));
+                this.Data.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(category);
+
+            ViewBag.CategoryId = new SelectList(this.Data.Categories.All(), "Id", "Name", categoryViewModel.Id);
+            return View(categoryViewModel);
         }
 
         // GET: Admin/Categories/Delete/5
@@ -100,12 +118,13 @@ namespace OnlineStore.Web.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Category category = data.Categories.Find(id);
+            Category category = Data.Categories.GetById(id);
             if (category == null)
             {
                 return HttpNotFound();
             }
-            return View(category);
+            var categoryViewModel = this.Mapper.Map<CategoryViewModel>(category);
+            return View(categoryViewModel);
         }
 
         // POST: Admin/Categories/Delete/5
@@ -113,19 +132,10 @@ namespace OnlineStore.Web.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Category category = data.Categories.Find(id);
-            data.Categories.Remove(category);
-            data.SaveChanges();
+            Category category = Data.Categories.GetById(id);
+            Data.Categories.Delete(category);
+            Data.SaveChanges();
             return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                data.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }

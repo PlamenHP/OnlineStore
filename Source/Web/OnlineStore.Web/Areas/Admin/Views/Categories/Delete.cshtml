@@ -1,4 +1,4 @@
-﻿@model OnlineStore.Models.Category
+﻿@model OnlineStore.Web.Areas.Admin.ViewModels.CategoryViewModel
 
 @{
     ViewBag.Title = "Delete";
@@ -19,13 +19,13 @@
             @Html.DisplayFor(model => model.Name)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Image)
-        </dt>
+		<dt>
+			@Html.DisplayNameFor(model => model.ImageToView)
+		</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Image)
-        </dd>
+		<dd>
+			<img src="@Model.ImageToView">
+		</dd>
 
     </dl>
 

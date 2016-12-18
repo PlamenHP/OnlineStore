@@ -1,4 +1,4 @@
-﻿@model OnlineStore.Models.Category
+﻿@model OnlineStore.Web.Areas.Admin.ViewModels.CategoryViewModel
 
 @{
     ViewBag.Title = "Create";
@@ -6,13 +6,14 @@
 
 <h2>Create</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" })) 
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
         <h4>Category</h4>
         <hr />
+
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -22,13 +23,14 @@
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Image, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
-            </div>
-        </div>
+		<div class="form-group">
+			@Html.LabelFor(model => model.ImageFromView, htmlAttributes: new { @class = "control-label col-md-2" })
+			<div class="col-md-10">
+				<img src="" id="selectedImage">
+				@Html.TextBoxFor(model => model.ImageFromView, new { type = "file", name = "imageFromView", @onchange = "readURL(this)" })
+				@Html.ValidationMessageFor(model => model.ImageFromView, "", new { @class = "text-danger" })
+			</div>
+		</div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
@@ -41,3 +43,7 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+@section JavaScript
+{
+	<script type="text/javascript" src="@Url.Content("~/Scripts/Site.js")"></script>
+}

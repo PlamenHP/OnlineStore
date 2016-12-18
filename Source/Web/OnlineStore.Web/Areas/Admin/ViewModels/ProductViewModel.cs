@@ -40,6 +40,7 @@
         {
             configuration.CreateMap<ProductViewModel, Product>()
                 .ForMember(x => x.Image, opt => opt.MapFrom(x => x.ImageFromView.ToByteArrayImage()));
+
             configuration.CreateMap<Product, ProductViewModel>()
             .ForMember(x => x.ImageToView, opt => opt.MapFrom(x => x.Image.ToStringImage()));
         }

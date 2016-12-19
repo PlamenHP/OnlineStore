@@ -69,12 +69,6 @@ namespace OnlineStore.Web.App_Start
         {
             kernel.Bind<IStoreDb>().To<StoreDb>();
             kernel.Bind<IApplicationDbContext>().To<ApplicationDbContext>();
-            kernel.Bind<ApplicationDbContext>().ToSelf().InRequestScope();
-            kernel.Bind(typeof(UserManager<>)).ToSelf();
-            kernel.Bind(typeof(UserStore<>)).ToSelf();
-            kernel.Bind(typeof(DbContext)).To(typeof(IApplicationDbContext)).InRequestScope();
-            kernel.Bind(typeof(IUserStore<ApplicationUser>)).To(typeof(UserStore<ApplicationUser>)).InRequestScope();
-            kernel.Bind(typeof(UserManager<ApplicationUser>)).ToSelf().InRequestScope();
         }        
     }
 }

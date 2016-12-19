@@ -6,7 +6,7 @@
 	<h2>Manage</h2>
 	<hr />
 	<ul>
-		<li>@Html.ActionLink("Users", "List", "User")</li>
+		<li>@Html.ActionLink("Users", "Index", "ApplicationUsers", new { area = "Admin" }, null)</li>
 		<li>@Html.ActionLink("Categories", "Index", "Categories")</li>
 		<li>@Html.ActionLink("Products In Stock", "Index", "Products")</li>
 		<li>@Html.ActionLink("Deleted Products", "ListDeleted", "Products", new { area = "Admin" }, null)</li>

@@ -22,6 +22,6 @@
             set { this.products = value; }
         }
 
-        public virtual ApplicationUser User { get; set; }
+        public virtual ApplicationUser ApplicationUser { get; set; }
     }
 }

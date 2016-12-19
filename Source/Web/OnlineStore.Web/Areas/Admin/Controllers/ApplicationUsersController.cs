@@ -28,7 +28,7 @@
         // GET: User
         public ActionResult Index()
         {
-            return RedirectToAction("List");
+            return View();
         }
 
         // GET: User/List
@@ -46,7 +46,11 @@
 
         private HashSet<string> GetAdminUserNames(List<ApplicationUser> users, IStoreDb data)
         {
-            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+            //var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+            // Create user manager
+            var userManager = Request
+                .GetOwinContext()
+                .GetUserManager<ApplicationUserManager>();
 
             var admins = new HashSet<string>();
 
@@ -173,8 +177,9 @@
 
         private void SetUserRoles(EditUserViewModel viewModel, ApplicationUser user, IStoreDb Data)
         {
-            var userManager = HttpContext.GetOwinContext()
-                                        .GetUserManager<ApplicationUserManager>();
+            var userManager = HttpContext
+                .GetOwinContext()
+                .GetUserManager<ApplicationUserManager>();
 
             foreach (var role in viewModel.Roles)
             {
@@ -192,7 +197,9 @@
         private IList<Role> GetUserRoles(ApplicationUser user, IStoreDb db)
         {
             // Create user manager
-            var userManager = Request.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            var userManager = Request
+                .GetOwinContext()
+                .GetUserManager<ApplicationUserManager>();
 
             // Get all  application roles
             var roles = db.UserRoles.All()
@@ -200,7 +207,7 @@
                 .OrderBy(r => r)
                 .ToList();
 
-            // For each application role, check if the user gas it
+            // For each application role, check if the user has it
             var userRoles = new List<Role>();
 
             foreach (var roleName in roles)

@@ -22,7 +22,7 @@
             set { this.products = value; }
         }
 
-        public virtual ApplicationUser User { get; set; }
+        public virtual ApplicationUser ApplicationUser { get; set; }
 
         public bool Shipped { get; set; }
     }

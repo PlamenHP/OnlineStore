@@ -29,7 +29,7 @@
         // GET: User
         public ActionResult Index()
         {
-            return View();
+            return RedirectToAction("List");
         }
 
         // GET: User/List
@@ -67,7 +67,7 @@
 
 
         // GET: User/Edit
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(string id)
         {
             //validate id
             if (id == null)
@@ -76,7 +76,7 @@
             }
 
             // Get user from DB
-            var user = Data.Users.GetById(id);
+            var user = Data.Users.All().FirstOrDefault(x=>x.Id == id);
 
             // Check if user exists
             if (user == null)
@@ -97,14 +97,14 @@
         // POST: User/Edit
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int? id, EditUserViewModel viewModel)
+        public ActionResult Edit(string id, EditUserViewModel viewModel)
         {
             // Check if model is valid
             if (ModelState.IsValid)
             {
 
                 // Get user from Data
-                var user = Data.Users.GetById(id);
+                var user = Data.Users.All().FirstOrDefault(x => x.Id == id);
 
                 // Check if user exists
                 if (user == null)
@@ -136,14 +136,14 @@
         }
 
         // GET: User/Delete
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             // get user from Data
-            var user = Data.Users.GetById(id);
+            var user = Data.Users.All().FirstOrDefault(x => x.Id == id);
 
             // Check if user exists
             if (user == null)
@@ -158,14 +158,14 @@
         [HttpPost]
         [ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int? id)
+        public ActionResult DeleteConfirmed(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             // Get user from Data
-            var user = Data.Users.GetById(id);
+            var user = Data.Users.All().FirstOrDefault(x => x.Id == id);
 
             // Delete user and save changes
             Data.Users.Delete(user);
@@ -202,8 +202,8 @@
                 .GetUserManager<ApplicationUserManager>();
 
             // Get all  application roles
-            var roles = Roles.GetAllRoles()
-                .Select(r => r.ToString())
+            var roles = db.IdentityRoles.All()
+                .Select(r => r.Name)
                 .OrderBy(r => r)
                 .ToList();
 

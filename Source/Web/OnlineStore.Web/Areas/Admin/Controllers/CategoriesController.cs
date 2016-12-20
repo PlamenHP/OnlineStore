@@ -10,6 +10,7 @@
     using Data.UnitOfWork;
     using ViewModels;
 
+    [Authorize(Roles = "Admin")]
     public class CategoriesController : BaseController
     {
         public CategoriesController(IStoreDb data)

@@ -19,6 +19,13 @@
 					<li>@Html.ActionLink("  Checkout", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "glyphicon glyphicon-edit" })</li>
 				</ul>
 			</li>
+
+			<li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> Account<span class="caret"></span></a>
+				<ul class="dropdown-menu" role="menu">
+					<li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+				</ul>
+			</li>
 		</ul>
 	}
 }

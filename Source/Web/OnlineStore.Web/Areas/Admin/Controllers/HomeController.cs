@@ -2,6 +2,7 @@
 {
     using System.Web.Mvc;
 
+    [Authorize(Roles = "Admin")]
     public class HomeController : Controller
     {
         // GET: Admin/Home

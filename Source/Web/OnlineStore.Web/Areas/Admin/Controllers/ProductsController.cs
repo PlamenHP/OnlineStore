@@ -11,6 +11,7 @@
     using Infrastructure.Mapping;
     using System.Collections.Generic;
 
+    [Authorize(Roles = "Admin")]
     public class ProductsController : BaseController
     {
         public ProductsController(IStoreDb data)

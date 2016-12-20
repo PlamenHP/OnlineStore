@@ -271,7 +271,7 @@
     <Content Include="Areas\Admin\Views\Categories\Index.cshtml" />
     <Content Include="Areas\Admin\Views\EditUser\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\EditUser\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\EditUser\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\EditUser\List.cshtml" />
     <None Include="Properties\Settings.settings">
       <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -86,6 +86,14 @@
             }
 
             var categoryViewModel = this.Mapper.Map<CategoryViewModel>(category);
+            if (!TempData.ContainsKey("image"))
+            {
+                TempData.Add("image", category.Image);
+            }
+            else
+            {
+                TempData["image"] = category.Image;
+            }
             ViewBag.CategoryId = new SelectList(this.Data.Categories.All(), "Id", "Name", categoryViewModel.Id);
             return View(categoryViewModel);
         }
@@ -99,7 +107,19 @@
         {
             if (ModelState.IsValid)
             {
-                this.Data.Categories.Update(this.Mapper.Map<Category>(categoryViewModel));
+                var editedCategory = this.Mapper.Map<Category>(categoryViewModel);
+
+                if (categoryViewModel.ImageFromView == null)
+                {
+                    editedCategory.Image = (byte[])TempData["image"];
+                }
+
+                if (TempData.ContainsKey("image"))
+                {
+                    TempData.Remove("image");
+                }            
+
+                this.Data.Categories.Update(editedCategory);
                 this.Data.SaveChanges();
                 return RedirectToAction("Index");
             }

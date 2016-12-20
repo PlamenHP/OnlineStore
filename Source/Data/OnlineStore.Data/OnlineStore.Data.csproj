@@ -67,7 +67,6 @@
     <Compile Include="UnitOfWork\StoreDb.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Data\OnlineStore.Models\OnlineStore.Models.csproj">
     <ProjectReference Include="..\OnlineStore.Models\OnlineStore.Models.csproj">
       <Project>{ed1ac086-d706-4e10-b661-bc9044561a9e}</Project>
       <Name>OnlineStore.Models</Name>

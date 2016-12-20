@@ -1,4 +1,5 @@
-﻿@model IEnumerable<OnlineStore.Web.ViewModels.Home.CategoryViewModel>
+﻿@using OnlineStore.Web.Controllers;
+@model IEnumerable<OnlineStore.Web.ViewModels.Home.ListCategoriesViewModel>
 @{
 	ViewBag.Title = "Home Page";
 }
@@ -59,14 +60,18 @@
 </div>
 <!--end carousel-->
 
-<div class="btn-group-vertical">
+<div class="row">
 	@foreach (var category in Model)
 	{
-		<div class="well navbar">
-			<div class="btn-group-justified">
-				@Html.ActionLink(category.Name, "List", "Category", new { @id = category.Id }, new { @class = "btn bg-danger btn-xs btn-lg  text-primary" })
-			</div>
-		</div>
+	<div class="col-md-4">
+		<a href='@Url.Action(nameof(CategoryProductsController.List), nameof(CategoryProductsController).Replace("Controller", ""),new { @id = category.Id })' class="col-md-11 navbar btn well btn-xs btn-lg  text-primary">
+				<div class="bg-danger col-md-12">
+					<h4>@category.Name</h4>
+				</div>
+				<hr />
+				<img src="@category.ImageToView">
+		</a>
+	</div>
 	}
 </div>
 

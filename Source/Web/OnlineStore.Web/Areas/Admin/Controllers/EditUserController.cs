@@ -16,11 +16,12 @@
     using ViewModels;
     using Data;
     using Microsoft.AspNet.Identity.Owin;
+    using System.Web.Security;
 
     [Authorize(Roles = "Admin")]
-    public class ApplicationUsersController : BaseController
+    public class EditUserController : BaseController
     {
-        public ApplicationUsersController(IStoreDb data)
+        public EditUserController(IStoreDb data)
             : base(data)
         {
         }
@@ -46,7 +47,6 @@
 
         private HashSet<string> GetAdminUserNames(List<ApplicationUser> users, IStoreDb data)
         {
-            //var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
             // Create user manager
             var userManager = Request
                 .GetOwinContext()
@@ -202,8 +202,8 @@
                 .GetUserManager<ApplicationUserManager>();
 
             // Get all  application roles
-            var roles = db.UserRoles.All()
-                .Select(r => r.Name)
+            var roles = Roles.GetAllRoles()
+                .Select(r => r.ToString())
                 .OrderBy(r => r)
                 .ToList();
 

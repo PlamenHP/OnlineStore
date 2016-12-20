@@ -16,6 +16,7 @@
         [Key]
         public int Id { get; set; }
 
+
         public virtual ICollection<Product> Products
         {
             get { return this.products; }

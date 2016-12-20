@@ -31,7 +31,15 @@
         // GET: Category
         public ActionResult Details(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var product = Data.Products.GetById(id);
+
+            var detailsView = Mapper.Map<ProductViewModel>(product);
+            return View(detailsView);
         }
 
         // POST: Category

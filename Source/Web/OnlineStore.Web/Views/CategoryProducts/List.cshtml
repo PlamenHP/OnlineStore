@@ -11,7 +11,7 @@
 		@foreach (var product in Model.Products)
 		{
 			<div class="col-md-4">
-				<a href='@Url.Action(nameof(CategoryProductsController.Details), nameof(CategoryProductsController).Replace("Controller", ""))' class="col-md-11 navbar btn well btn-xs btn-lg  text-primary">
+				<a href='@Url.Action(nameof(CategoryProductsController.Details), nameof(CategoryProductsController).Replace("Controller", ""),new { @id = product.Id })' class="col-md-11 navbar btn well btn-xs btn-lg  text-primary">
 					<div class="bg-danger col-md-12">
 						<h4>@product.Name</h4>
 					</div>

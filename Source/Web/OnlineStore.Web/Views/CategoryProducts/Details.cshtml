@@ -1,7 +1,29 @@
-﻿
+﻿@using OnlineStore.Web.Controllers;
+@model OnlineStore.Web.ViewModels.Category.ProductViewModel
+
 @{
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<div class="container">
+	<h2>@Model.Name</h2>
+	<div class="row">
 
+			<div class="col-md-12">
+					<div class="bg-danger col-md-12">
+						<h4>@Model.Name</h4>
+					</div>
+					<hr />
+					<img src="@Model.ImageToView">
+					<hr />
+				<div class="navbar bg-info">
+					<p class="well">@Model.Description</p>
+				</div>
+				<hr />
+				<a href='@Url.Action(nameof(CategoryProductsController.Details), nameof(CategoryProductsController).Replace("Controller", ""),new { @id = Model.Id })' class="col-md-12 bg-success text-primary navbar btn well btn-xs btn-lg">
+					<footer><strong>BUY: $@Model.Price</strong></footer>
+				</a>
+			</div>
+	
+	</div>
+</div>

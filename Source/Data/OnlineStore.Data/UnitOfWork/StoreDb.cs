@@ -2,6 +2,7 @@
 namespace OnlineStore.Data.UnitOfWork
 {
     using Common.Repositories;
+    using Microsoft.AspNet.Identity.EntityFramework;
     using Models;
     using Repositories;
     using System;
@@ -9,10 +10,13 @@ namespace OnlineStore.Data.UnitOfWork
     public class StoreDb : IStoreDb
     {
         private readonly IApplicationDbContext dbContext;
-
+        
         private IRepository<ApplicationUser> users;
         private IDeletableEntityRepository<Product> products;
         private IRepository<Category> categories;
+        private IRepository<ShoppingCart> shoppingCarts;
+        private IRepository<Order> orders;
+        private IRepository<IdentityRole> identityRoles;
 
         public StoreDb(IApplicationDbContext dbContext)
         {
@@ -26,12 +30,16 @@ namespace OnlineStore.Data.UnitOfWork
 
         public IRepository<Category> Categories => (categories ?? (this.categories = new GenericRepository<Category>(dbContext)));
 
-
         public IDeletableEntityRepository<Product> Products => (products ?? (this.products = new DeletableEntityRepository<Product>(dbContext)));
-
 
         public IRepository<ApplicationUser> Users => (users ?? (this.users = new GenericRepository<ApplicationUser>(dbContext)));
 
+        public IRepository<ShoppingCart> ShoppingCarts => (shoppingCarts ?? (this.shoppingCarts = new GenericRepository<ShoppingCart>(dbContext)));
+
+        public IRepository<Order> Orders => (orders ?? (this.orders = new GenericRepository<Order>(dbContext)));
+
+        public IRepository<IdentityRole> IdentityRoles => (identityRoles ?? (this.identityRoles = new GenericRepository<IdentityRole>(dbContext)));
+        
         public void SaveChanges()
         {
             this.dbContext.SaveChanges();

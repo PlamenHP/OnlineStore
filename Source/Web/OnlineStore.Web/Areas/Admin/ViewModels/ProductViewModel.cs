@@ -18,6 +18,7 @@
         public string Name { get; set; }
 
         [Required]
+        [DataType(DataType.MultilineText)]
         public string Description { get; set; }
 
         [Required]

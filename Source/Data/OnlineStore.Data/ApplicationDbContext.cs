@@ -25,6 +25,10 @@
 
         public IDbSet<Category> Categories { get; set; }
 
+        public IDbSet<ShoppingCart> ShoppingCarts { get; set; }
+
+        public IDbSet<Order> Orders { get; set; }
+
         public override int SaveChanges()
         {
             ApplyAuditInfoRules();
@@ -60,7 +64,7 @@
         {
             return base.Set<T>();
         }
-    }
+   }
 }
     
 

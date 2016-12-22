@@ -12,6 +12,10 @@ namespace OnlineStore.Web.App_Start
     using Ninject.Web.Common;
     using Data.UnitOfWork;
     using Data;
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
+    using System.Data.Entity;
+    using OnlineStore.Models;
 
     public static class NinjectWebCommon 
     {

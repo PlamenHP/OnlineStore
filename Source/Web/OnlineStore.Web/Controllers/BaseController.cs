@@ -37,7 +37,7 @@
 
         protected IStoreDb Data { get; private set; }
 
-        protected ApplicationUser UserProfile { get; private set; }
+        protected ApplicationUser UserProfile { get; private set; }      
 
         protected override IAsyncResult BeginExecute(RequestContext requestContext, AsyncCallback callback, object state)
         {

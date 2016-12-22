@@ -1,0 +1,38 @@
+﻿@model IEnumerable<OnlineStore.Models.ApplicationUser>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<table class="table table-striped table-hover">
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>Email</th>
+			<th>Actions</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		@foreach (var user in Model)
+		{
+			if (ViewBag.Admins.Contains(user.UserName))
+			{
+				@:<tr class="info">
+            }
+			else
+			{
+				@:<tr>
+            }
+
+			<td>@user.Id</td>
+					<td>@user.Email</td>
+					<td>
+						@Html.ActionLink("Edit", "Edit", "EditUser", new { @id = user.Id }, null)
+						@Html.ActionLink("Delete", "Delete", "EditUser", new { @id = user.Id }, null)
+					</td>
+		}
+</tbody>
+</table>

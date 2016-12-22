@@ -6,6 +6,7 @@
     using System.Web.Mvc.Expressions;
     using ViewModels.Home;
     using Infrastructure.Mapping;
+    using System.Collections.Generic;
 
     public class HomeController : BaseController
     {
@@ -24,11 +25,13 @@
 
             var categories = this.Data.Categories
                 .All()
-                .OrderBy(x => x.Name)
-                .MapTo<CategoryViewModel>()
+                .OrderBy(x => x.Name)            
                 .ToList();
 
-            return View(categories);
+            var listCategoriesViewModel = Mapper.Map<IEnumerable<ListCategoriesViewModel>>(categories);
+
+            // Return the view
+            return View(listCategoriesViewModel);
         }
 
         public ActionResult About()

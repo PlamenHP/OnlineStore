@@ -200,14 +200,19 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\ViewEnginesConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\EditUserController.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoriesController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductsController.cs" />
     <Compile Include="Areas\Admin\ViewModels\CategoryViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\ProductViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\EditUserViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\Role.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
-    <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
+    <Compile Include="Controllers\CategoryProductsController.cs" />
+    <Compile Include="Controllers\CheckoutController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Extensions\ByteExtensions.cs" />
@@ -221,11 +226,16 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\AccountViewModels.cs" />
-    <Compile Include="ViewModels\Category\CategoryViewModel.cs" />
-    <Compile Include="ViewModels\Home\CategoryViewModel.cs" />
+    <Compile Include="ViewModels\Cart\CartItem.cs" />
+    <Compile Include="ViewModels\Cart\CartViewModel.cs" />
+    <Compile Include="ViewModels\CategoryProducts\DetailsViewModel.cs" />
+    <Compile Include="ViewModels\CategoryProducts\ListViewModel.cs" />
+    <Compile Include="ViewModels\CategoryProducts\CategoryProduct.cs" />
+    <Compile Include="ViewModels\Home\ListCategoriesViewModel.cs" />
     <Compile Include="ViewModels\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\_Common\Product_T.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -266,6 +276,9 @@
     <Content Include="Areas\Admin\Views\Categories\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Categories\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Categories\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\EditUser\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\EditUser\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\EditUser\List.cshtml" />
     <None Include="Properties\Settings.settings">
       <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -305,8 +318,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
@@ -328,7 +339,10 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Category\List.cshtml" />
+    <Content Include="Views\CategoryProducts\List.cshtml" />
+    <Content Include="Views\CategoryProducts\Details.cshtml" />
+    <Content Include="Views\Cart\Cart.cshtml" />
+    <Content Include="Views\Checkout\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

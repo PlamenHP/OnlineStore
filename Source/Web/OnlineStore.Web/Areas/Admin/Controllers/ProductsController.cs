@@ -11,6 +11,7 @@
     using Infrastructure.Mapping;
     using System.Collections.Generic;
 
+    [Authorize(Roles = "Admin")]
     public class ProductsController : BaseController
     {
         public ProductsController(IStoreDb data)
@@ -100,6 +101,15 @@
                 return HttpNotFound();
             }
             var productViewModel = this.Mapper.Map<ProductViewModel>(product);
+            if (!TempData.ContainsKey( "image"))
+            {
+                TempData.Add("image", product.Image);
+            }
+            else
+            {
+                TempData["image"] = product.Image;
+            }
+            
             ViewBag.CategoryId = new SelectList(this.Data.Categories.All(), "Id", "Name", productViewModel.CategoryId);
             return View(productViewModel);
         }
@@ -113,7 +123,18 @@
         {
             if (ModelState.IsValid)
             {
-                this.Data.Products.Update(this.Mapper.Map<Product>(productViewModel));
+                var editedProduct = this.Mapper.Map<Product>(productViewModel);
+                if (productViewModel.ImageFromView == null)
+                {
+                    editedProduct.Image = (byte[])TempData["image"];
+                }
+
+                if (TempData.ContainsKey("image"))
+                {
+                    TempData.Remove("image");
+                }
+
+                this.Data.Products.Update(editedProduct);
                 this.Data.SaveChanges();
                 return RedirectToAction("Index");
             }

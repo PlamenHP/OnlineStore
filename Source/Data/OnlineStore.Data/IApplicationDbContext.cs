@@ -11,7 +11,9 @@
 
         IDbSet<Category> Categories { get; set; }
 
-        IDbSet<ApplicationUser> Users { get; set; }
+        IDbSet<ShoppingCart> ShoppingCarts { get; set; }
+
+        IDbSet<Order> Orders { get; set; }
 
         int SaveChanges();
 

@@ -1,0 +1,44 @@
+﻿@model OnlineStore.Models.ApplicationUser
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>ApplicationUser</h4>
+    <hr />
+	@using (Html.BeginForm("Delete", "EditUser", FormMethod.Post, new { @class = "form-horizontal" }))
+	{
+		@Html.AntiForgeryToken()
+		<div class="form-group">
+			@Html.LabelFor(m => m.UserName, new { @class = "control-label col-sm-4" })
+			<div class="col-sm-4">
+				@Html.TextBoxFor(m => m.UserName, new { @class = "form-control col-sm-4", @readonly = "readonly" })
+			</div>
+		</div>
+
+			<div class="form-group">
+				@Html.LabelFor(m => m.FirstName, new { @class = "control-label col-sm-4" })
+				<div class="col-sm-4">
+					@Html.TextBoxFor(m => m.LastName, new { @class = "form-control col-sm-4", @readonly = "readonly" })
+				</div>
+			</div>
+
+			<div class="form-group">
+				@Html.LabelFor(m => m.FirstName, new { @class = "control-label col-sm-4" })
+				<div class="col-sm-4">
+					@Html.TextBoxFor(m => m.LastName, new { @class = "form-control col-sm-4", @readonly = "readonly" })
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="col-sm-offset-4 col-sm-4">
+					@Html.ActionLink("Cancel", "List", "User", null, new { @class = "btn btn-default" })
+					<input type="submit" value="Delete" class="btn btn-danger" />
+				</div>
+			</div>
+	}
+</div>

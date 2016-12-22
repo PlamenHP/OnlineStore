@@ -1,19 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Net;
-namespace OnlineStore.Web.Areas.Admin.Controllers
+﻿namespace OnlineStore.Web.Areas.Admin.Controllers
 {
-    using System.Web;
+    using System.Collections.Generic;
+    using System.Data;
+    using System.Linq;
+    using System.Net;
     using System.Web.Mvc;
-    using OnlineStore.Data;
     using OnlineStore.Models;
-    using OnlineStore.Web.Controllers;
-    using OnlineStore.Data.UnitOfWork;
-    using OnlineStore.Web.Areas.Admin.ViewModels;
+    using Web.Controllers;
+    using Data.UnitOfWork;
+    using ViewModels;
 
+    [Authorize(Roles = "Admin")]
     public class CategoriesController : BaseController
     {
         public CategoriesController(IStoreDb data)
@@ -89,6 +86,14 @@ namespace OnlineStore.Web.Areas.Admin.Controllers
             }
 
             var categoryViewModel = this.Mapper.Map<CategoryViewModel>(category);
+            if (!TempData.ContainsKey("image"))
+            {
+                TempData.Add("image", category.Image);
+            }
+            else
+            {
+                TempData["image"] = category.Image;
+            }
             ViewBag.CategoryId = new SelectList(this.Data.Categories.All(), "Id", "Name", categoryViewModel.Id);
             return View(categoryViewModel);
         }
@@ -102,7 +107,19 @@ namespace OnlineStore.Web.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                this.Data.Categories.Update(this.Mapper.Map<Category>(categoryViewModel));
+                var editedCategory = this.Mapper.Map<Category>(categoryViewModel);
+
+                if (categoryViewModel.ImageFromView == null)
+                {
+                    editedCategory.Image = (byte[])TempData["image"];
+                }
+
+                if (TempData.ContainsKey("image"))
+                {
+                    TempData.Remove("image");
+                }            
+
+                this.Data.Categories.Update(editedCategory);
                 this.Data.SaveChanges();
                 return RedirectToAction("Index");
             }

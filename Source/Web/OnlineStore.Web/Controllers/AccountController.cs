@@ -34,8 +34,7 @@ namespace OnlineStore.Web.Controllers
             bool isAvailable;
             using (var db = new ApplicationDbContext())
             {
-                isAvailable = !db.Users.Any(User => User.UserName == Email);
-               
+                isAvailable = !db.Users.Any(User => User.UserName == Email);             
             }
             return Json(isAvailable, JsonRequestBehavior.AllowGet);
         }

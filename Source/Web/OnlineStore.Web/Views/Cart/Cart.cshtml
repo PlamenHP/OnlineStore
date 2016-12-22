@@ -1,0 +1,32 @@
+﻿@using OnlineStore.Web.Controllers;
+@model OnlineStore.Web.ViewModels.CartViewModel
+@{
+    ViewBag.Title = "CartContent";
+}
+
+<h2>CartContent</h2>
+<hr />
+<div class="container">
+	<div class="row">
+		@foreach (var item in Model.Items)
+		{
+			<div class="col-md-4">
+				<div class="bg-danger col-md-12">
+					<h4>@item.Name</h4>
+				</div>
+				<hr />
+				<img src="@item.ImageToView">
+				<footer><strong>Price: $@item.Price</strong></footer>
+				<hr />
+				<a href='@Url.Action(nameof(CartController.RemoveItem), nameof(CartController).Replace("Controller", ""),new { @id = item.Id })' class="col-md-12 bg-danger text-primary navbar btn well btn-xs btn-lg">
+					<footer><strong>REMOVE</strong></footer>
+				</a>
+			</div>
+		}
+	</div>
+		<a href='@Url.Action(nameof(CheckoutController.Index), nameof(CheckoutController).Replace("Controller", ""))' class="nav-justified col-md-12 navbar btn btn-success btn-xs btn-lg text-primary">
+			<footer><strong>Total: $@Model.Sum</strong></footer>
+		<h2>Checkout</h2>
+		</a>
+
+</div>

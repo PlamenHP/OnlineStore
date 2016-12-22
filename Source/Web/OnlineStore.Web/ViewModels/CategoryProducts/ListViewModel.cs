@@ -1,15 +1,15 @@
-﻿namespace OnlineStore.Web.ViewModels.Category
+﻿namespace OnlineStore.Web.ViewModels.CategoryProducts
 {
     using Infrastructure.Mapping;
     using OnlineStore.Models;
     using System.Collections.Generic;
 
-    public class ListCategoryProductsViewModel: IMapFrom<Category>
+    public class ListViewModel: IMapFrom<Category>
     {
         public int Id { get; set; }
 
         public string Name { get; set; }
 
-        public virtual ICollection<ProductViewModel> Products { get; set; }
+        public ICollection<CategoryProduct> Products { get; set; }
     }
 }

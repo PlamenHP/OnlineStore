@@ -3,7 +3,7 @@
     using Data.UnitOfWork;
     using System.Net;
     using System.Web.Mvc;
-    using ViewModels.Category;
+    using ViewModels.CategoryProducts;
 
     public class CategoryProductsController : BaseController
     {
@@ -22,7 +22,7 @@
 
             // Get category products
             var category = this.Data.Categories.GetById(id);
-            var listCategoryProductsView = Mapper.Map<ListCategoryProductsViewModel>(category);
+            var listCategoryProductsView = Mapper.Map<ListViewModel>(category);
 
             // Return the view
             return View(listCategoryProductsView);
@@ -38,7 +38,7 @@
 
             var product = Data.Products.GetById(id);
 
-            var detailsView = Mapper.Map<ProductViewModel>(product);
+            var detailsView = Mapper.Map<DetailsViewModel>(product);
             return View(detailsView);
         }
 

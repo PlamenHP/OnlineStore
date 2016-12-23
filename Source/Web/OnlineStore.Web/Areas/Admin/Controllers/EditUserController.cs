@@ -1,9 +1,7 @@
 ﻿namespace OnlineStore.Web.Areas.Admin.Controllers
 {
-    using System;
     using System.Collections.Generic;
     using System.Data;
-    using System.Data.Entity;
     using System.Linq;
     using System.Net;
     using System.Web;
@@ -12,11 +10,10 @@
     using Web.Controllers;
     using Data.UnitOfWork;
     using Microsoft.AspNet.Identity;
-    using Microsoft.AspNet.Identity.EntityFramework;
     using ViewModels;
-    using Data;
     using Microsoft.AspNet.Identity.Owin;
-    using System.Web.Security;
+    using System.Data.Entity.Infrastructure;
+    using Microsoft.AspNet.Identity.EntityFramework;
 
     [Authorize(Roles = "Admin")]
     public class EditUserController : BaseController
@@ -122,14 +119,14 @@
 
                 // Set user properties
                 user.Email = viewModel.User.Email;
+                user.UserName = user.Email;
                 user.FirstName = viewModel.User.FirstName;
-                user.UserName = viewModel.User.LastName;
+                user.LastName = viewModel.User.LastName;
                 this.SetUserRoles(viewModel, user, Data);
 
                 // Save changes
                 Data.SaveChanges();
                 return RedirectToAction("List");
-
             }
 
             return View(viewModel);

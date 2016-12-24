@@ -3,7 +3,9 @@
     using AutoMapper;
     using Data.UnitOfWork;
     using Infrastructure.Mapping;
+    using Ninject;
     using OnlineStore.Models;
+    using Services;
     using System;
     using System.Linq;
     using System.Web.Mvc;
@@ -34,6 +36,9 @@
 
             this.UserProfile = userProfile;
         }
+
+        [Inject]
+        public  ICacheService cacheService { get; set; }
 
         protected IStoreDb Data { get; private set; }
 

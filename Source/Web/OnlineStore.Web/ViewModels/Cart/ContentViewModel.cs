@@ -1,12 +1,12 @@
-﻿namespace OnlineStore.Web.ViewModels
+﻿namespace OnlineStore.Web.ViewModels.Cart
 {
     using Cart;
     using OnlineStore.Models;
     using System.Collections.Generic;
 
-    public class CartViewModel
+    public class ContentViewModel
     {
-        public CartViewModel()
+        public ContentViewModel()
         {
             this.Items = new List<CartItem>();
         }

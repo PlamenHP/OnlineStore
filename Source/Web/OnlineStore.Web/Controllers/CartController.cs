@@ -17,16 +17,24 @@
         // GET: Cart
         public ActionResult Index()
         {
-            return RedirectToAction(nameof(Cart));
+            return RedirectToAction(nameof(Content));
         }
 
         // GET: List
-        public ActionResult Cart()
+        public ActionResult Content()
         {
-
             // get the cart from session
-            var cartViewModel = (CartViewModel)Session["Cart"];
-            return View(cartViewModel);
+            var contentViewModel = (ContentViewModel)Session["Cart"];
+
+            if (contentViewModel == null)
+            {
+                contentViewModel = new ContentViewModel();
+            }
+
+            // put the cart back to session
+            Session["Cart"] = contentViewModel;
+
+            return View(contentViewModel);
         }
 
         // GET: Buuy
@@ -45,23 +53,23 @@
             }
 
             // get the cart from session
-            var cartViewModel = (CartViewModel)Session["Cart"];
+            var contentViewModel = (ContentViewModel)Session["Cart"];
 
-            if (cartViewModel == null)
+            if (contentViewModel == null)
             {
-                cartViewModel = new CartViewModel();       
+                contentViewModel = new ContentViewModel();       
             }
 
             // add the item
             var item = Mapper.Map<CartItem>(product);
-            cartViewModel.Items.Add(item);
-            cartViewModel.Sum = cartViewModel.Items.Select(x => x.Price).Sum();
+            contentViewModel.Items.Add(item);
+            contentViewModel.Sum = contentViewModel.Items.Select(x => x.Price).Sum();
 
             // put the cart back to session
-            Session["Cart"] = cartViewModel;
+            Session["Cart"] = contentViewModel;
 
             // Return the view
-            return RedirectToAction(nameof(Cart));
+            return RedirectToAction(nameof(Content));
         }
 
         // GET: Remove
@@ -72,21 +80,21 @@
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var cartViewModel = (CartViewModel)Session["Cart"];
+            var contentViewModel = (ContentViewModel)Session["Cart"];
 
-            if (cartViewModel == null)
+            if (contentViewModel == null)
             {
                 return HttpNotFound();
             }
 
-            cartViewModel.Items.Remove(cartViewModel.Items.Where(x=>x.Id==id).FirstOrDefault());
-            cartViewModel.Sum = cartViewModel.Items.Select(x => x.Price).Sum();
+            contentViewModel.Items.Remove(contentViewModel.Items.Where(x=>x.Id==id).FirstOrDefault());
+            contentViewModel.Sum = contentViewModel.Items.Select(x => x.Price).Sum();
 
             // put the cart back to session
-            Session["Cart"] = cartViewModel;
+            Session["Cart"] = contentViewModel;
 
             // Return the view
-            return RedirectToAction(nameof(Cart));
+            return RedirectToAction(nameof(Content));
         }
     }
 }

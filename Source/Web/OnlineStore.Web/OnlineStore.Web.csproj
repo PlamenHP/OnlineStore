@@ -236,7 +236,7 @@
     </Compile>
     <Compile Include="ViewModels\AccountViewModels.cs" />
     <Compile Include="ViewModels\Cart\CartItem.cs" />
-    <Compile Include="ViewModels\Cart\CartViewModel.cs" />
+    <Compile Include="ViewModels\Cart\ContentViewModel.cs" />
     <Compile Include="ViewModels\CategoryProducts\DetailsViewModel.cs" />
     <Compile Include="ViewModels\CategoryProducts\ListViewModel.cs" />
     <Compile Include="ViewModels\CategoryProducts\CategoryProduct.cs" />
@@ -350,7 +350,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\CategoryProducts\List.cshtml" />
     <Content Include="Views\CategoryProducts\Details.cshtml" />
-    <Content Include="Views\Cart\Cart.cshtml" />
+    <Content Include="Views\Cart\Content.cshtml" />
     <Content Include="Views\Checkout\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>

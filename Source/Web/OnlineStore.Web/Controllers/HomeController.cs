@@ -10,12 +10,9 @@
 
     public class HomeController : BaseController
     {
-        private ICacheService cacheService;
-
-        public HomeController(IStoreDb data, ICacheService cacheService)
+        public HomeController(IStoreDb data)
             :base(data)
         {
-            this.cacheService = cacheService;
         }
 
         public ActionResult Index()

@@ -15,9 +15,9 @@
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-shopping-cart"></span> Cart<span class="caret"></span></a>
 				<ul class="dropdown-menu" role="menu">
 
-					<li>@Html.ActionLink("  Items", "Details", "Cart", routeValues: null, htmlAttributes: new { id = "cartDetailsLink", @class = "glyphicon glyphicon-shopping-cart" })</li>
+					<li>@Html.ActionLink("  Items", nameof(CartController.Content), nameof(CartController).Replace("Controller", ""), routeValues: null, htmlAttributes: new { id = "cartDetailsLink", @class = "glyphicon glyphicon-shopping-cart" })</li>
 
-					<li>@Html.ActionLink("  Checkout", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "glyphicon glyphicon-edit" })</li>
+					<li>@Html.ActionLink("  Checkout", nameof(CheckoutController.Index), nameof(CheckoutController).Replace("Controller", ""), routeValues: null, htmlAttributes: new { id = "registerLink", @class = "glyphicon glyphicon-edit" })</li>
 				</ul>
 			</li>
 
@@ -38,7 +38,7 @@ else
 			<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-shopping-cart"></span> Cart<span class="caret"></span></a>
 			<ul class="dropdown-menu" role="menu">
 
-				<li>@Html.ActionLink("  Items", nameof(CartController.Cart), nameof(CartController).Replace("Controller", ""), routeValues: null, htmlAttributes: new { id = "cartDetailsLink", @class = "glyphicon glyphicon-shopping-cart" })</li>
+				<li>@Html.ActionLink("  Items", nameof(CartController.Content), nameof(CartController).Replace("Controller", ""), routeValues: null, htmlAttributes: new { id = "cartDetailsLink", @class = "glyphicon glyphicon-shopping-cart" })</li>
 
 				<li>@Html.ActionLink("  Checkout", nameof(CheckoutController.Index), nameof(CheckoutController).Replace("Controller", ""), routeValues: null, htmlAttributes: new { id = "registerLink", @class = "glyphicon glyphicon-edit" })</li>
 			</ul>

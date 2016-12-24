@@ -5,14 +5,17 @@
     using System.Web.Mvc;
     using System.Web.Mvc.Expressions;
     using ViewModels.Home;
-    using Infrastructure.Mapping;
     using System.Collections.Generic;
+    using Services;
 
     public class HomeController : BaseController
     {
-        public HomeController(IStoreDb data)
+        private ICacheService cacheService;
+
+        public HomeController(IStoreDb data, ICacheService cacheService)
             :base(data)
         {
+            this.cacheService = cacheService;
         }
 
         public ActionResult Index()
@@ -23,10 +26,14 @@
                 return RedirectToAction("Index", "Home", new { area = "Admin" });
             }
 
-            var categories = this.Data.Categories
+            var categories = this.cacheService.Get(
+                "categories",
+                () => this.Data.Categories
                 .All()
-                .OrderBy(x => x.Name)            
-                .ToList();
+                .OrderBy(x => x.Name)
+                .ToList(),
+                30 * 60
+            );
 
             var listCategoriesViewModel = Mapper.Map<IEnumerable<ListCategoriesViewModel>>(categories);
 

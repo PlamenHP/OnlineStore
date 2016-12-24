@@ -5,17 +5,12 @@ namespace OnlineStore.Web.App_Start
 {
     using System;
     using System.Web;
-
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
-
     using Ninject;
     using Ninject.Web.Common;
     using Data.UnitOfWork;
     using Data;
-    using Microsoft.AspNet.Identity;
-    using Microsoft.AspNet.Identity.EntityFramework;
-    using System.Data.Entity;
-    using OnlineStore.Models;
+    using Services;
 
     public static class NinjectWebCommon 
     {
@@ -69,6 +64,7 @@ namespace OnlineStore.Web.App_Start
         {
             kernel.Bind<IStoreDb>().To<StoreDb>();
             kernel.Bind<IApplicationDbContext>().To<ApplicationDbContext>();
+            kernel.Bind<ICacheService>().To<HttpCacheService>();
         }        
     }
 }

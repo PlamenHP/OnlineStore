@@ -32,24 +32,10 @@
                 30 * 60
             );
 
-            var listCategoriesViewModel = Mapper.Map<IEnumerable<ListCategoriesViewModel>>(categories);
+            var listCategoriesViewModel = Mapper.Map<IEnumerable<IndexViewModel>>(categories);
 
             // Return the view
             return View(listCategoriesViewModel);
-        }
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-            
-            return this.RedirectToAction(c => c.Contact());
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
         }
     }
 }

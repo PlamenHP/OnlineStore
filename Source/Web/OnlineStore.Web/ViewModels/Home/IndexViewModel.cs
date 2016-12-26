@@ -6,8 +6,9 @@
     using AutoMapper;
     using System;
     using Extensions;
+    using Services;
 
-    public class ListCategoriesViewModel: IMapFrom<Category>, IHaveCustomMappings
+    public class IndexViewModel: IMapFrom<Category>, IHaveCustomMappings
     {
         public int Id { get; set; }
 
@@ -17,7 +18,7 @@
 
         public void CreateMappings(IMapperConfigurationExpression configuration)
         {
-            configuration.CreateMap<Category, ListCategoriesViewModel>()
+            configuration.CreateMap<Category, IndexViewModel>()
             .ForMember(x => x.ImageToView, opt => opt.MapFrom(x => x.Image.ToStringImage()));
         }
     }

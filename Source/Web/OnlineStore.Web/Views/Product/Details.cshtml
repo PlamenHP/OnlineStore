@@ -1,5 +1,5 @@
 ﻿@using OnlineStore.Web.Controllers;
-@model OnlineStore.Web.ViewModels.CategoryProducts.DetailsViewModel
+@model OnlineStore.Web.ViewModels.Product.DetailsViewModel
 
 @{
     ViewBag.Title = "Details";
@@ -20,7 +20,13 @@
 					<p class="well">@Model.Description</p>
 				</div>
 				<hr />
-				<a href='@Url.Action(nameof(CartController.BuyItem), nameof(CartController).Replace("Controller", ""),new { @id = Model.Id })' class="col-md-12 bg-success text-primary navbar btn well btn-xs btn-lg">
+				<a href='@Url.Action(
+							nameof(CartController.AddItem),
+							nameof(CartController).Replace("Controller", ""),
+							new { @id = Model.Id }
+							)' 
+				 class="col-md-12 bg-success text-primary navbar btn well btn-xs btn-lg">
+
 					<footer><strong>BUY: $@Model.Price</strong></footer>
 				</a>
 			</div>

@@ -8,13 +8,13 @@
     {
         public ContentViewModel()
         {
-            this.Items = new List<CartItem>();
+            this.CartItems = new List<CartItem>();
         }
 
         public decimal Sum { get; set; }
 
         public ApplicationUser ApplicationUser { get; set; }
 
-        public List<CartItem> Items { get; set; }
+        public List<CartItem> CartItems { get; set; }
     }
 }

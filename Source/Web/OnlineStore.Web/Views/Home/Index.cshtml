@@ -1,5 +1,5 @@
 ﻿@using OnlineStore.Web.Controllers;
-@model IEnumerable<OnlineStore.Web.ViewModels.Home.ListCategoriesViewModel>
+@model IEnumerable<OnlineStore.Web.ViewModels.Home.IndexViewModel>
 @{
 	ViewBag.Title = "Home Page";
 }
@@ -64,7 +64,12 @@
 	@foreach (var category in Model)
 	{
 	<div class="col-md-4">
-		<a href='@Url.Action(nameof(CategoryProductsController.List), nameof(CategoryProductsController).Replace("Controller", ""),new { @id = category.Id })' class="col-md-11 navbar btn well btn-xs btn-lg  text-primary">
+
+		<a href='@Url.Action(nameof(CategoryController.List),
+				nameof(CategoryController).Replace("Controller", ""),
+				new { @categoryName = category.Name })' 
+		   class="col-md-11 navbar btn well btn-xs btn-lg  text-primary">
+
 				<div class="bg-danger col-md-12">
 					<h4>@category.Name</h4>
 				</div>

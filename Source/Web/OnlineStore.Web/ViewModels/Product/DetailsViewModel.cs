@@ -1,13 +1,16 @@
-﻿namespace OnlineStore.Web.ViewModels.CategoryProducts
+﻿namespace OnlineStore.Web.ViewModels.Product
 {
+    using _Common;
     using AutoMapper;
     using Extensions;
     using Infrastructure.Mapping;
     using OnlineStore.Models;
 
-    public class DetailsViewModel: CategoryProduct, IMapFrom<Product>, IHaveCustomMappings
+    public class DetailsViewModel: Product_T, IMapFrom<Product>, IHaveCustomMappings
     {
-        public override void CreateMappings(IMapperConfigurationExpression configuration)
+        public string Description { get; set; }
+
+        public void CreateMappings(IMapperConfigurationExpression configuration)
         {
             configuration.CreateMap<Product, DetailsViewModel>()
             .ForMember(x => x.ImageToView, opt => opt.MapFrom(x => x.Image.ToStringImage()));

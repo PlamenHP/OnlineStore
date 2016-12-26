@@ -1,10 +1,6 @@
 ﻿namespace OnlineStore.Web.ViewModels._Common
 {
-    using Extensions;
-    using Infrastructure.Mapping;
-    using OnlineStore.Models;
     using System;
-    using AutoMapper;
 
     public abstract class Product_T
     {

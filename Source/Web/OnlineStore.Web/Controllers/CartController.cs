@@ -38,7 +38,7 @@
         }
 
         // GET: Buuy
-        public ActionResult BuyItem(int? id)
+        public ActionResult AddItem(int? id)
         {
             if (id == null)
             {
@@ -62,8 +62,8 @@
 
             // add the item
             var item = Mapper.Map<CartItem>(product);
-            contentViewModel.Items.Add(item);
-            contentViewModel.Sum = contentViewModel.Items.Select(x => x.Price).Sum();
+            contentViewModel.CartItems.Add(item);
+            contentViewModel.Sum = contentViewModel.CartItems.Select(x => x.Price).Sum();
 
             // put the cart back to session
             Session["Cart"] = contentViewModel;
@@ -87,8 +87,8 @@
                 return HttpNotFound();
             }
 
-            contentViewModel.Items.Remove(contentViewModel.Items.Where(x=>x.Id==id).FirstOrDefault());
-            contentViewModel.Sum = contentViewModel.Items.Select(x => x.Price).Sum();
+            contentViewModel.CartItems.Remove(contentViewModel.CartItems.Where(x=>x.Id==id).FirstOrDefault());
+            contentViewModel.Sum = contentViewModel.CartItems.Select(x => x.Price).Sum();
 
             // put the cart back to session
             Session["Cart"] = contentViewModel;

@@ -1,6 +1,6 @@
 ﻿@using OnlineStore.Web.Controllers;
 
-@model OnlineStore.Web.ViewModels.CategoryProducts.ListViewModel
+@model OnlineStore.Web.ViewModels.Category.ListViewModel
 
 @{
 	ViewBag.Title = "Products";
@@ -9,10 +9,15 @@
 <div class="container">
 	<h2>@Model.Name</h2>
 	<div class="row">
-		@foreach (var product in Model.Products)
+		@foreach (var product in Model.CategoryItems)
 		{
 			<div class="col-md-4">
-				<a href='@Url.Action(nameof(CategoryProductsController.Details), nameof(CategoryProductsController).Replace("Controller", ""),new { @id = product.Id })' class="col-md-11 navbar btn well btn-xs btn-lg  text-primary">
+
+				<a href='@Url.Action(nameof(ProductController.Details),
+						nameof(ProductController).Replace("Controller", ""),
+						new { @id= product.Url })' 
+				   class="col-md-11 navbar btn well btn-xs btn-lg  text-primary">
+
 					<div class="bg-danger col-md-12">
 						<h4>@product.Name</h4>
 					</div>

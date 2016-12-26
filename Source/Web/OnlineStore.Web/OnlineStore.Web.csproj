@@ -219,10 +219,11 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CartController.cs" />
-    <Compile Include="Controllers\CategoryProductsController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\CheckoutController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Extensions\ByteExtensions.cs" />
     <Compile Include="Extensions\HttpPostedFileBaseExtensions.cs" />
     <Compile Include="GlimpseSecurityPolicy.cs" />
@@ -237,10 +238,10 @@
     <Compile Include="ViewModels\AccountViewModels.cs" />
     <Compile Include="ViewModels\Cart\CartItem.cs" />
     <Compile Include="ViewModels\Cart\ContentViewModel.cs" />
-    <Compile Include="ViewModels\CategoryProducts\DetailsViewModel.cs" />
-    <Compile Include="ViewModels\CategoryProducts\ListViewModel.cs" />
-    <Compile Include="ViewModels\CategoryProducts\CategoryProduct.cs" />
-    <Compile Include="ViewModels\Home\ListCategoriesViewModel.cs" />
+    <Compile Include="ViewModels\Product\DetailsViewModel.cs" />
+    <Compile Include="ViewModels\Category\ListViewModel.cs" />
+    <Compile Include="ViewModels\Category\CategoryItem.cs" />
+    <Compile Include="ViewModels\Home\IndexViewModel.cs" />
     <Compile Include="ViewModels\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -348,8 +349,8 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\CategoryProducts\List.cshtml" />
-    <Content Include="Views\CategoryProducts\Details.cshtml" />
+    <Content Include="Views\Category\List.cshtml" />
+    <Content Include="Views\Product\Details.cshtml" />
     <Content Include="Views\Cart\Content.cshtml" />
     <Content Include="Views\Checkout\Index.cshtml" />
   </ItemGroup>

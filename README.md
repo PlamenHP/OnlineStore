@@ -1,4 +1,4 @@
-# OnlineStore - ASP.NET MVC project
+# OnlineStore - ASP.NET MVC + Entity Framework project
 <ul>
 Implemented:
 <li>Repository pattern</li>
